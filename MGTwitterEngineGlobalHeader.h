@@ -79,4 +79,5 @@ typedef long long MGTwitterEngineCursorID;
 #ifndef __MGTWITTERENGINELOCATIONDEGREES__
 #define __MGTWITTERENGINELOCATIONDEGREES__
 typedef double MGTwitterEngineLocationDegrees;
+
 #endif
