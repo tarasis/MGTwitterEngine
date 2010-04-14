@@ -1201,6 +1201,14 @@
                            responseType:MGTwitterStatus];
 }
 
+- (NSString *)sendRetweet:(MGTwitterEngineID)tweetID {    
+    NSString *path = [NSString stringWithFormat:@"statuses/retweet/%llu.%@", tweetID, API_FORMAT];
+		
+    return [self _sendRequestWithMethod:HTTP_POST_METHOD path:path 
+                        queryParameters:nil body:nil 
+                            requestType:MGTwitterRetweetSendRequest
+                           responseType:MGTwitterStatus];
+}
 
 #pragma mark -
 
