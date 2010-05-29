@@ -460,7 +460,9 @@
 		if (body) {
 			finalBody = [finalBody stringByAppendingString:body];
 		}
-        if (_clientSourceToken) {
+
+        // if using OAuth, Twitter already knows your application's name, so don't send it
+        if (_clientSourceToken && _accessToken == nil) {
             finalBody = [finalBody stringByAppendingString:[NSString stringWithFormat:@"%@source=%@", 
                                                             (body) ? @"&" : @"" , 
                                                             _clientSourceToken]];
@@ -476,6 +478,12 @@
         }
     }
     
+	return [self _sendRequest:theRequest withRequestType:requestType responseType:responseType];
+}
+
+-(NSString *)_sendRequest:(NSURLRequest *)theRequest 
+		  withRequestType:(MGTwitterRequestType)requestType
+			 responseType:(MGTwitterResponseType)responseType{
     
     // Create a connection using this request, with the default timeout and caching policy, 
     // and appropriate Twitter request and response types for parsing and error reporting.
@@ -725,9 +733,18 @@
             break;
     }
 #elif TOUCHJSON_AVAILABLE
-	[MGTwitterTouchJSONParser parserWithJSON:jsonData delegate:self
-						connectionIdentifier:identifier requestType:requestType
-								responseType:responseType URL:URL deliveryOptions:_deliveryOptions];
+	switch (responseType) {
+		case MGTwitterOAuthToken:;
+			OAToken *token = [[[OAToken alloc] initWithHTTPResponseBody:[[[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding] autorelease]] autorelease];
+			[self parsingSucceededForRequest:identifier ofResponseType:requestType
+						   withParsedObjects:[NSArray arrayWithObject:token]];
+			break;
+		default:
+			[MGTwitterTouchJSONParser parserWithJSON:jsonData delegate:self
+								connectionIdentifier:identifier requestType:requestType
+										responseType:responseType URL:URL deliveryOptions:_deliveryOptions];
+			break;
+	}
 #endif
 	
 }
@@ -772,7 +789,7 @@
 								responseType:responseType URL:URL];
 			break;
 		case MGTwitterOAuthToken:;
-			OAToken *token = [[[OAToken alloc] initWithHTTPResponseBody:[[[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding] autorelease]] autorelease];
+			OAToken *token = [[[OAToken alloc] initWithHTTPResponseBody:[[[NSString alloc] initWithData:xmlData encoding:NSUTF8StringEncoding] autorelease]] autorelease];
 			[self parsingSucceededForRequest:identifier ofResponseType:requestType
 						   withParsedObjects:[NSArray arrayWithObject:token]];
         default:
@@ -1841,10 +1858,6 @@
 
 - (NSString *)getSearchResultsForQuery:(NSString *)query sinceID:(MGTwitterEngineID)sinceID startingAtPage:(int)page count:(int)count geocode:(NSString *)geocode
 {
-#if LARGE_ID_TEST
-	if (sinceID > 0) sinceID -= 0x7fffffff;
-#endif
-
     NSString *path = [NSString stringWithFormat:@"search.%@", API_FORMAT];
     
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:0];
