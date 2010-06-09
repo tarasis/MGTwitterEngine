@@ -78,6 +78,7 @@
 - (NSString *)_encodeString:(NSString *)string;
 
 // Connection/Request methods
+- (NSString*)_sendRequest:(NSURLRequest *)theRequest withRequestType:(MGTwitterRequestType)requestType responseType:(MGTwitterResponseType)responseType;
 - (NSString *)_sendRequestWithMethod:(NSString *)method 
                                 path:(NSString *)path 
                      queryParameters:(NSDictionary *)params
@@ -437,7 +438,7 @@
 
 #pragma mark Request sending methods
 
-#define SET_AUTHORIZATION_IN_HEADER 1
+#define SET_AUTHORIZATION_IN_HEADER 0
 
 - (NSString *)_sendRequestWithMethod:(NSString *)method 
                                 path:(NSString *)path 
@@ -481,9 +482,8 @@
 	return [self _sendRequest:theRequest withRequestType:requestType responseType:responseType];
 }
 
--(NSString *)_sendRequest:(NSURLRequest *)theRequest 
-		  withRequestType:(MGTwitterRequestType)requestType
-			 responseType:(MGTwitterResponseType)responseType{
+-(NSString*)_sendRequest:(NSURLRequest *)theRequest withRequestType:(MGTwitterRequestType)requestType responseType:(MGTwitterResponseType)responseType;
+{
     
     // Create a connection using this request, with the default timeout and caching policy, 
     // and appropriate Twitter request and response types for parsing and error reporting.
