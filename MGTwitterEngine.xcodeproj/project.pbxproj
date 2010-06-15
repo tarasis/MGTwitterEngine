@@ -7,12 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1E4C01691186A3780092F9AD /* MGTwitterMiscYAJLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 44AEFFEA0F2141AB004F5AE3 /* MGTwitterMiscYAJLParser.m */; };
-		1E4C016A1186A3780092F9AD /* MGTwitterStatusesYAJLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 44AEFFEC0F2141AB004F5AE3 /* MGTwitterStatusesYAJLParser.m */; };
-		1E4C016B1186A3780092F9AD /* MGTwitterMessagesYAJLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 44AEFFE80F2141AB004F5AE3 /* MGTwitterMessagesYAJLParser.m */; };
-		1E4C016C1186A3780092F9AD /* MGTwitterYAJLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 44AEFFF00F2141AB004F5AE3 /* MGTwitterYAJLParser.m */; };
-		1E4C016D1186A3780092F9AD /* MGTwitterUsersYAJLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 44AEFFEE0F2141AB004F5AE3 /* MGTwitterUsersYAJLParser.m */; };
-		1E4C016E1186A3780092F9AD /* MGTwitterSearchYAJLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 440E60660F257C1300EF8874 /* MGTwitterSearchYAJLParser.m */; };
 		1E4C01951186A47C0092F9AD /* yajl_alloc.c in Sources */ = {isa = PBXBuildFile; fileRef = 1E4C01881186A47C0092F9AD /* yajl_alloc.c */; };
 		1E4C01961186A47C0092F9AD /* yajl_buf.c in Sources */ = {isa = PBXBuildFile; fileRef = 1E4C018A1186A47C0092F9AD /* yajl_buf.c */; };
 		1E4C01971186A47C0092F9AD /* yajl_encode.c in Sources */ = {isa = PBXBuildFile; fileRef = 1E4C018D1186A47C0092F9AD /* yajl_encode.c */; };
@@ -35,20 +29,8 @@
 		1E4C01D41186A49C0092F9AD /* OAProblem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E4C01BA1186A49C0092F9AD /* OAProblem.m */; };
 		1E4C01D51186A49C0092F9AD /* OARequestParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E4C01BC1186A49C0092F9AD /* OARequestParameter.m */; };
 		1E4C01D61186A49C0092F9AD /* OAServiceTicket.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E4C01BE1186A49C0092F9AD /* OAServiceTicket.m */; };
-		1E4C01D81186A49C0092F9AD /* OAToken_KeychainExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E4C01C21186A49C0092F9AD /* OAToken_KeychainExtensions.m */; };
 		1E4C01D91186A49C0092F9AD /* OAToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E4C01C41186A49C0092F9AD /* OAToken.m */; };
 		1E4C01E01186A5260092F9AD /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E4C01DF1186A5260092F9AD /* Security.framework */; };
-		1E79899F118D071E00DDD6D9 /* MGTwitterTouchJSONParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E79899E118D071E00DDD6D9 /* MGTwitterTouchJSONParser.m */; };
-		1E798A66118D077E00DDD6D9 /* CDataScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E7989E7118D077E00DDD6D9 /* CDataScanner.m */; };
-		1E798A67118D077E00DDD6D9 /* CDataScanner_Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E7989EA118D077E00DDD6D9 /* CDataScanner_Extensions.m */; };
-		1E798A68118D077E00DDD6D9 /* NSCharacterSet_Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E7989EC118D077E00DDD6D9 /* NSCharacterSet_Extensions.m */; };
-		1E798A69118D077E00DDD6D9 /* NSDictionary_JSONExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E7989EE118D077E00DDD6D9 /* NSDictionary_JSONExtensions.m */; };
-		1E798A6A118D077E00DDD6D9 /* NSScanner_Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E7989F0118D077E00DDD6D9 /* NSScanner_Extensions.m */; };
-		1E798A6B118D077E00DDD6D9 /* CJSONDataSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E7989F3118D077E00DDD6D9 /* CJSONDataSerializer.m */; };
-		1E798A6C118D077E00DDD6D9 /* CJSONDeserializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E7989F5118D077E00DDD6D9 /* CJSONDeserializer.m */; };
-		1E798A6D118D077E00DDD6D9 /* CJSONScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E7989F7118D077E00DDD6D9 /* CJSONScanner.m */; };
-		1E798A6E118D077E00DDD6D9 /* CJSONSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E7989F9118D077E00DDD6D9 /* CJSONSerializer.m */; };
-		1E798A6F118D077E00DDD6D9 /* CSerializedJSONData.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E7989FB118D077E00DDD6D9 /* CSerializedJSONData.m */; };
 		44F7517C0E47DBD600858A1B /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 44F7517B0E47DBD600858A1B /* libxml2.dylib */; };
 		44F7518F0E47DDD500858A1B /* MGTwitterUsersLibXMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 44F751890E47DDD500858A1B /* MGTwitterUsersLibXMLParser.m */; };
 		44F751900E47DDD500858A1B /* MGTwitterMiscLibXMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 44F7518A0E47DDD500858A1B /* MGTwitterMiscLibXMLParser.m */; };
@@ -604,12 +586,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1E4C01691186A3780092F9AD /* MGTwitterMiscYAJLParser.m in Sources */,
-				1E4C016A1186A3780092F9AD /* MGTwitterStatusesYAJLParser.m in Sources */,
-				1E4C016B1186A3780092F9AD /* MGTwitterMessagesYAJLParser.m in Sources */,
-				1E4C016C1186A3780092F9AD /* MGTwitterYAJLParser.m in Sources */,
-				1E4C016D1186A3780092F9AD /* MGTwitterUsersYAJLParser.m in Sources */,
-				1E4C016E1186A3780092F9AD /* MGTwitterSearchYAJLParser.m in Sources */,
 				8D11072D0486CEB800E47090 /* main.m in Sources */,
 				C9811E5D0D5F696200720D77 /* AppController.m in Sources */,
 				C9811E640D5F69B500720D77 /* MGTwitterEngine.m in Sources */,
@@ -650,19 +626,7 @@
 				1E4C01D41186A49C0092F9AD /* OAProblem.m in Sources */,
 				1E4C01D51186A49C0092F9AD /* OARequestParameter.m in Sources */,
 				1E4C01D61186A49C0092F9AD /* OAServiceTicket.m in Sources */,
-				1E4C01D81186A49C0092F9AD /* OAToken_KeychainExtensions.m in Sources */,
 				1E4C01D91186A49C0092F9AD /* OAToken.m in Sources */,
-				1E79899F118D071E00DDD6D9 /* MGTwitterTouchJSONParser.m in Sources */,
-				1E798A66118D077E00DDD6D9 /* CDataScanner.m in Sources */,
-				1E798A67118D077E00DDD6D9 /* CDataScanner_Extensions.m in Sources */,
-				1E798A68118D077E00DDD6D9 /* NSCharacterSet_Extensions.m in Sources */,
-				1E798A69118D077E00DDD6D9 /* NSDictionary_JSONExtensions.m in Sources */,
-				1E798A6A118D077E00DDD6D9 /* NSScanner_Extensions.m in Sources */,
-				1E798A6B118D077E00DDD6D9 /* CJSONDataSerializer.m in Sources */,
-				1E798A6C118D077E00DDD6D9 /* CJSONDeserializer.m in Sources */,
-				1E798A6D118D077E00DDD6D9 /* CJSONScanner.m in Sources */,
-				1E798A6E118D077E00DDD6D9 /* CJSONSerializer.m in Sources */,
-				1E798A6F118D077E00DDD6D9 /* CSerializedJSONData.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -712,6 +676,7 @@
 				);
 				ONLY_ACTIVE_ARCH_PRE_XCODE_3_1 = "$(NATIVE_ARCH_ACTUAL)";
 				PRODUCT_NAME = MGTwitterEngine;
+				USER_HEADER_SEARCH_PATHS = "/usr/local/include/**";
 				WRAPPER_EXTENSION = app;
 				ZERO_LINK = YES;
 			};
@@ -736,6 +701,7 @@
 					"\"$(SRCROOT)\"",
 				);
 				PRODUCT_NAME = MGTwitterEngine;
+				USER_HEADER_SEARCH_PATHS = "/usr/local/include/**";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
