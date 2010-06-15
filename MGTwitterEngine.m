@@ -8,7 +8,7 @@
 
 #import "MGTwitterEngine.h"
 #import "MGTwitterHTTPURLConnection.h"
-@class OAToken;
+#import "OAuthConsumer.h"
 
 #import "NSData+Base64.h"
 
@@ -66,6 +66,27 @@
 #define DEFAULT_CLIENT_TOKEN	@"mgtwitterengine"
 
 #define URL_REQUEST_TIMEOUT     25.0 // Twitter usually fails quickly if it's going to fail at all.
+
+@interface NSDictionary (MGTwitterEngineExtensions)
+
+-(NSDictionary *)MGTE_dictionaryByRemovingObjectForKey:(NSString *)key;
+
+@end
+
+@implementation NSDictionary (MGTwitterEngineExtensions)
+
+-(NSDictionary *)MGTE_dictionaryByRemovingObjectForKey:(NSString *)key{
+	NSDictionary *result = self;
+	if(key){
+		NSMutableDictionary *newParams = [[self mutableCopy] autorelease];
+		[newParams removeObjectForKey:key];
+		self = [[newParams copy] autorelease];
+	}
+	return result;
+}
+
+@end
+
 
 
 @interface MGTwitterEngine (PrivateMethods)
@@ -183,44 +204,6 @@
 	// 1.0.8 = 01 Oct 2008
     return @"1.0.8";
 }
-
-
-- (NSString *)username
-{
-    return [[_username retain] autorelease];
-}
-
-
-- (NSString *)password
-{
-    return [[_password retain] autorelease];
-}
-
-
-- (void)setUsername:(NSString *)newUsername password:(NSString *)newPassword
-{
-    // Set new credentials.
-    [_username release];
-    _username = [newUsername retain];
-    [_password release];
-    _password = [newPassword retain];
-    
-	if ([self clearsCookies]) {
-		// Remove all cookies for twitter, to ensure next connection uses new credentials.
-		NSString *urlString = [NSString stringWithFormat:@"%@://%@", 
-							   (_secureConnection) ? @"https" : @"http", 
-							   _APIDomain];
-		NSURL *url = [NSURL URLWithString:urlString];
-		
-		NSHTTPCookieStorage *cookieStorage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
-		NSEnumerator *enumerator = [[cookieStorage cookiesForURL:url] objectEnumerator];
-		NSHTTPCookie *cookie = nil;
-		while ((cookie = [enumerator nextObject])) {
-			[cookieStorage deleteCookie:cookie];
-		}
-	}
-}
-
 
 - (NSString *)clientName
 {
@@ -465,6 +448,9 @@
         [_connections setObject:connection forKey:[connection identifier]];
         [connection release];
     }
+	
+	if ([self _isValidDelegateForSelector:@selector(connectionStarted:)])
+		[_delegate connectionStarted:[connection identifier]];
     
     return [connection identifier];
 }
@@ -484,7 +470,7 @@
 
     NSMutableURLRequest *theRequest = [self _baseRequestWithMethod:method 
                                                               path:path
-                                                       requestType:requestType 
+													requestType:requestType 
                                                    queryParameters:params];
     
     // Set the request body if this is a POST request.
@@ -495,9 +481,11 @@
 		if (body) {
 			finalBody = [finalBody stringByAppendingString:body];
 		}
-        if (_clientSourceToken) {
+
+        // if using OAuth, Twitter already knows your application's name, so don't send it
+        if (_clientSourceToken && _accessToken == nil) {
             finalBody = [finalBody stringByAppendingString:[NSString stringWithFormat:@"%@source=%@", 
-                                                            (body) ? @"&" : @"?" , 
+                                                            (body) ? @"&" : @"" , 
                                                             _clientSourceToken]];
         }
         
@@ -510,7 +498,13 @@
 #endif
         }
     }
-    
+	
+	return [self _sendRequest:theRequest withRequestType:requestType responseType:responseType];
+}
+
+-(NSString *)_sendRequest:(NSURLRequest *)theRequest 
+		  withRequestType:(MGTwitterRequestType)requestType
+			 responseType:(MGTwitterResponseType)responseType{
     
     // Create a connection using this request, with the default timeout and caching policy, 
     // and appropriate Twitter request and response types for parsing and error reporting.
@@ -526,6 +520,9 @@
         [_connections setObject:connection forKey:[connection identifier]];
         [connection release];
     }
+	
+	if ([self _isValidDelegateForSelector:@selector(connectionStarted:)])
+		[_delegate connectionStarted:[connection identifier]];
     
     return [connection identifier];
 }
@@ -585,6 +582,9 @@
         [_connections setObject:connection forKey:[connection identifier]];
         [connection release];
     }
+	
+	if ([self _isValidDelegateForSelector:@selector(connectionStarted:)])
+		[_delegate connectionStarted:[connection identifier]];
     
     return [connection identifier];
     
@@ -596,9 +596,16 @@
                                     requestType:(MGTwitterRequestType)requestType 
                                 queryParameters:(NSDictionary *)params 
 {
+	NSString *contentType = [params objectForKey:@"Content-Type"];
+	if(contentType){
+		params = [params MGTE_dictionaryByRemovingObjectForKey:@"Content-Type"];
+	}else{
+		contentType = @"application/x-www-form-urlencoded";
+	}
+	
     // Construct appropriate URL string.
     NSString *fullPath = [path stringByAddingPercentEscapesUsingEncoding:NSNonLossyASCIIStringEncoding];
-    if (params) {
+    if (params && ![method isEqualToString:HTTP_POST_METHOD]) {
         fullPath = [self _queryStringWithBase:fullPath parameters:params prefixed:YES];
     }
     
@@ -656,11 +663,23 @@
 		NSLog(@"MGTwitterEngine: finalURL = %@", finalURL);
 	}
 #endif
-    
+
     // Construct an NSMutableURLRequest for the URL and set appropriate request method.
-    NSMutableURLRequest *theRequest = [NSMutableURLRequest requestWithURL:finalURL 
-                                                              cachePolicy:NSURLRequestReloadIgnoringCacheData 
-                                                          timeoutInterval:URL_REQUEST_TIMEOUT];
+	NSMutableURLRequest *theRequest = nil;
+    if(_accessToken){
+		theRequest = [[[OAMutableURLRequest alloc] initWithURL:finalURL
+													  consumer:[[[OAConsumer alloc] initWithKey:[self consumerKey]
+																						 secret:[self consumerSecret]] autorelease]
+														 token:_accessToken
+														 realm:nil
+											 signatureProvider:nil] autorelease];
+		[theRequest setCachePolicy:NSURLRequestReloadIgnoringCacheData ];
+		[theRequest setTimeoutInterval:URL_REQUEST_TIMEOUT];
+	}else{
+		theRequest = [NSMutableURLRequest requestWithURL:finalURL 
+											 cachePolicy:NSURLRequestReloadIgnoringCacheData 
+										 timeoutInterval:URL_REQUEST_TIMEOUT];
+	}
     if (method) {
         [theRequest setHTTPMethod:method];
     }
@@ -671,6 +690,8 @@
     [theRequest setValue:_clientName    forHTTPHeaderField:@"X-Twitter-Client"];
     [theRequest setValue:_clientVersion forHTTPHeaderField:@"X-Twitter-Client-Version"];
     [theRequest setValue:_clientURL     forHTTPHeaderField:@"X-Twitter-Client-URL"];
+	
+    [theRequest setValue:contentType    forHTTPHeaderField:@"Content-Type"];
     
 #if SET_AUTHORIZATION_IN_HEADER
 	if ([self username] && [self password]) {
@@ -681,7 +702,7 @@
 		[theRequest setValue:authValue forHTTPHeaderField:@"Authorization"];
 	}
 #endif
-
+	
     return theRequest;
 }
 
@@ -733,13 +754,27 @@
 						  connectionIdentifier:identifier requestType:requestType 
 								  responseType:responseType URL:URL deliveryOptions:_deliveryOptions];
 			break;
+		case MGTwitterOAuthToken:;
+			OAToken *token = [[[OAToken alloc] initWithHTTPResponseBody:[[[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding] autorelease]] autorelease];
+			[self parsingSucceededForRequest:identifier ofResponseType:requestType
+						   withParsedObjects:[NSArray arrayWithObject:token]];
+			break;
        default:
             break;
     }
 #elif TOUCHJSON_AVAILABLE
-	[MGTwitterTouchJSONParser parserWithJSON:jsonData delegate:self
-						connectionIdentifier:identifier requestType:requestType
-								responseType:responseType URL:URL deliveryOptions:_deliveryOptions];
+	switch (responseType) {
+		case MGTwitterOAuthToken:;
+			OAToken *token = [[[OAToken alloc] initWithHTTPResponseBody:[[[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding] autorelease]] autorelease];
+			[self parsingSucceededForRequest:identifier ofResponseType:requestType
+						   withParsedObjects:[NSArray arrayWithObject:token]];
+			break;
+		default:
+			[MGTwitterTouchJSONParser parserWithJSON:jsonData delegate:self
+								connectionIdentifier:identifier requestType:requestType
+										responseType:responseType URL:URL deliveryOptions:_deliveryOptions];
+			break;
+	}
 #endif
 	
 }
@@ -783,6 +818,10 @@
 							connectionIdentifier:identifier requestType:requestType 
 								responseType:responseType URL:URL];
 			break;
+		case MGTwitterOAuthToken:;
+			OAToken *token = [[[OAToken alloc] initWithHTTPResponseBody:[[[NSString alloc] initWithData:xmlData encoding:NSUTF8StringEncoding] autorelease]] autorelease];
+			[self parsingSucceededForRequest:identifier ofResponseType:requestType
+						   withParsedObjects:[NSArray arrayWithObject:token]];
         default:
             break;
     }
@@ -816,6 +855,10 @@
 			[MGTwitterSocialGraphParser parserWithXML:xmlData delegate:self 
 						  connectionIdentifier:identifier requestType:requestType 
 								  responseType:responseType];
+		case MGTwitterOAuthToken:;
+			OAToken *token = [[[OAToken alloc] initWithHTTPResponseBody:[[[NSString alloc] initWithData:xmlData encoding:NSUTF8StringEncoding] autorelease]] autorelease];
+			[self parsingSucceededForRequest:identifier ofResponseType:requestType
+						   withParsedObjects:[NSArray arrayWithObject:token]];
         default:
             break;
     }
@@ -866,6 +909,11 @@
 		case MGTwitterSocialGraph:
 			if ([self _isValidDelegateForSelector:@selector(socialGraphInfoReceived:forRequest:)])
 				[_delegate socialGraphInfoReceived: parsedObjects forRequest:identifier];
+			break;
+		case MGTwitterOAuthTokenRequest:
+			if ([self _isValidDelegateForSelector:@selector(accessTokenReceived:forRequest:)] && [parsedObjects count] > 0)
+				[_delegate accessTokenReceived:[parsedObjects objectAtIndex:0]
+									forRequest:identifier];
 			break;
         default:
             break;
@@ -1188,7 +1236,8 @@
     
     NSString *path = [NSString stringWithFormat:@"statuses/update.%@", API_FORMAT];
     
-    NSString *trimmedText = status;
+	// Convert the status to Unicode Normalized Form C to conform to Twitter's character counting requirement. See http://apiwiki.twitter.com/Counting-Characters .
+	NSString *trimmedText = [status precomposedStringWithCanonicalMapping];
     if ([trimmedText length] > MAX_MESSAGE_LENGTH) {
         trimmedText = [trimmedText substringToIndex:MAX_MESSAGE_LENGTH];
     }
@@ -1839,10 +1888,6 @@
 
 - (NSString *)getSearchResultsForQuery:(NSString *)query sinceID:(MGTwitterEngineID)sinceID startingAtPage:(int)page count:(int)count geocode:(NSString *)geocode
 {
-#if LARGE_ID_TEST
-	if (sinceID > 0) sinceID -= 0x7fffffff;
-#endif
-
     NSString *path = [NSString stringWithFormat:@"search.%@", API_FORMAT];
     
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:0];
@@ -1899,3 +1944,113 @@
 #endif
 
 @end
+
+@implementation MGTwitterEngine (BasicAuth)
+
+- (NSString *)username
+{
+    return [[_username retain] autorelease];
+}
+
+
+- (NSString *)password
+{
+    return [[_password retain] autorelease];
+}
+
+
+- (void)setUsername:(NSString *)newUsername password:(NSString *)newPassword
+{
+    // Set new credentials.
+    [_username release];
+    _username = [newUsername retain];
+    [_password release];
+    _password = [newPassword retain];
+    
+	if ([self clearsCookies]) {
+		// Remove all cookies for twitter, to ensure next connection uses new credentials.
+		NSString *urlString = [NSString stringWithFormat:@"%@://%@", 
+							   (_secureConnection) ? @"https" : @"http", 
+							   _APIDomain];
+		NSURL *url = [NSURL URLWithString:urlString];
+		
+		NSHTTPCookieStorage *cookieStorage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+		NSEnumerator *enumerator = [[cookieStorage cookiesForURL:url] objectEnumerator];
+		NSHTTPCookie *cookie = nil;
+		while ((cookie = [enumerator nextObject])) {
+			[cookieStorage deleteCookie:cookie];
+		}
+	}
+}
+
+@end
+
+@implementation MGTwitterEngine (OAuth)
+
+- (void)setConsumerKey:(NSString *)key secret:(NSString *)secret{
+	[_consumerKey autorelease];
+	_consumerKey = [key copy];
+	
+	[_consumerSecret autorelease];
+	_consumerSecret = [secret copy];
+}
+
+- (NSString *)consumerKey{
+	return _consumerKey;
+}
+
+- (NSString *)consumerSecret{
+	return _consumerSecret;
+}
+
+- (void)setAccessToken: (OAToken *)token{
+	[_accessToken autorelease];
+	_accessToken = [token retain];
+}
+
+- (OAToken *)accessToken{
+	return _accessToken;
+}
+
+- (NSString *)getXAuthAccessTokenForUsername:(NSString *)username 
+									password:(NSString *)password{
+	OAConsumer *consumer = [[[OAConsumer alloc] initWithKey:[self consumerKey] secret:[self consumerSecret]] autorelease];
+	
+	OAMutableURLRequest *request = [[OAMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"https://api.twitter.com/oauth/access_token"]
+																   consumer:consumer
+																	  token:nil // xAuth needs no request token?
+																	  realm:nil   // our service provider doesn't specify a realm
+														  signatureProvider:nil]; // use the default method, HMAC-SHA1
+	
+	[request setHTTPMethod:@"POST"];
+	
+	[request setParameters:[NSArray arrayWithObjects:
+							[OARequestParameter requestParameter:@"x_auth_mode" value:@"client_auth"],
+							[OARequestParameter requestParameter:@"x_auth_username" value:username],
+							[OARequestParameter requestParameter:@"x_auth_password" value:password],
+							nil]];		
+	
+    // Create a connection using this request, with the default timeout and caching policy, 
+    // and appropriate Twitter request and response types for parsing and error reporting.
+    MGTwitterHTTPURLConnection *connection;
+    connection = [[MGTwitterHTTPURLConnection alloc] initWithRequest:request
+                                                            delegate:self 
+                                                         requestType:MGTwitterOAuthTokenRequest
+                                                        responseType:MGTwitterOAuthToken];
+    
+    if (!connection) {
+        return nil;
+    } else {
+        [_connections setObject:connection forKey:[connection identifier]];
+        [connection release];
+    }
+	
+	if ([self _isValidDelegateForSelector:@selector(connectionStarted:)])
+		[_delegate connectionStarted:[connection identifier]];
+    
+    return [connection identifier];
+}
+
+@end
+
+
