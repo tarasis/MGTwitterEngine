@@ -2025,9 +2025,9 @@
 	[request setHTTPMethod:@"POST"];
 	
 	[request setParameters:[NSArray arrayWithObjects:
-							[OARequestParameter requestParameterWithName:@"x_auth_mode" value:@"client_auth"],
-							[OARequestParameter requestParameterWithName:@"x_auth_username" value:username],
-							[OARequestParameter requestParameterWithName:@"x_auth_password" value:password],
+							[OARequestParameter requestParameter:@"x_auth_mode" value:@"client_auth"],
+							[OARequestParameter requestParameter:@"x_auth_username" value:username],
+							[OARequestParameter requestParameter:@"x_auth_password" value:password],
 							nil]];		
 	
     // Create a connection using this request, with the default timeout and caching policy, 
