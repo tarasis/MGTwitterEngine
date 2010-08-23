@@ -1680,6 +1680,54 @@
 	
 }
 
+- (NSString *) getStatusesForList:(NSString *)listname byUser:(NSString *)username withOptions:(NSDictionary *)options
+{
+	if (!listname || !username)
+		return nil;
+	
+	NSString *path = [NSString stringWithFormat:@"%@/lists/%@/statuses.%@", username, listname, API_FORMAT];
+	
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:0];
+	
+	NSString * sinceID = [options objectForKey:@"since_id"]; 
+	NSString * maxID = [options objectForKey:@"max_id"];
+	NSString * perPage = [options objectForKey:@"per_page"];
+	NSString * page = [options objectForKey:@"page"];
+	NSString * includeEntities = [options objectForKey:@"include_entities"];
+	
+	if (sinceID)
+	{
+		[params setObject:sinceID forKey:@"since_id"];
+	}
+	
+	if (maxID)
+	{
+		[params setObject:maxID forKey:@"max_id"];
+	}
+
+	if (perPage)
+	{
+		[params setObject:perPage forKey:@"per_page"];
+	}
+
+	if (page)
+	{
+		[params setObject:page forKey:@"page"];
+	}
+
+	if (includeEntities)
+	{
+		[params setObject:includeEntities forKey:@"include_entities"];
+	}
+	
+	
+    NSString *body = [self _queryStringWithBase:nil parameters:params prefixed:NO];
+    
+    return [self _sendRequestWithMethod:nil path:path queryParameters:params body:body 
+                            requestType:MGTwitterUserListStatusesRequest 
+                           responseType:MGTwitterStatus];
+}
+
 
 
 #pragma mark Friendship methods

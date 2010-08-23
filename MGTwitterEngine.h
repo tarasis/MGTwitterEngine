@@ -142,6 +142,7 @@
 - (NSString *)deleteList:(NSString *)listname forUser:(NSString *) username;
 - (NSString *)getListSubscriptionsForUser:(NSString *)username;
 - (NSString *)getListMembershipsForUser:(NSString *)username;
+- (NSString *)getStatusesForList:(NSString *)listname byUser:(NSString *) username withOptions:(NSDictionary *) options;
 
 // Direct Message methods
 

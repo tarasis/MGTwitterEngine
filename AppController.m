@@ -118,6 +118,8 @@
 	//NSLog(@"getListSubscriptionsForUser: connectionIdentifier = %@", [twitterEngine getListSubscriptionsForUser:TESTING_SECONDARY_USER]);
 	//NSLog(@"getListMembershipsForUser: connectionIdentifier = %@", [twitterEngine getListMembershipsForUser:TESTING_SECONDARY_USER]);
 	
+	//NSDictionary * testOptions = [NSDictionary dictionaryWithObjectsAndKeys:@"5", @"per_page", nil];
+	//NSLog(@"getStatusForList: connectionIdentifier = %@", [twitterEngine getStatusesForList:@"famous-people" byUser:@"tarasis" withOptions:testOptions]);
 	
 #if YAJL_AVAILABLE || TOUCHJSON_AVAILABLE
 	// Search method

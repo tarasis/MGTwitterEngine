@@ -54,6 +54,7 @@ typedef enum _MGTwitterRequestType {
 	MGTwitterUserListRequest, // request details of a single list
 	MGTwitterUserListSubscriptionsRequest, // request list of lists the specified user follows
 	MGTwitterUserListMembershipsRequest, // request list of lists the specified user is a member of
+	MGTwitterUserListStatusesRequest, // request statuses for the specified list
 #if YAJL_AVAILABLE || TOUCHJSON_AVAILABLE
 	MGTwitterSearchRequest, // performing a search
 	MGTwitterSearchCurrentTrendsRequest, // getting the current trends
