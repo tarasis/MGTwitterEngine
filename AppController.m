@@ -41,7 +41,7 @@
 	//[twitterEngine setDeliveryOptions:MGTwitterEngineDeliveryIndividualResultsOption];
 
 	// Get the public timeline
-	NSLog(@"getPublicTimelineSinceID: connectionIdentifier = %@", [twitterEngine getPublicTimeline]);
+	//NSLog(@"getPublicTimelineSinceID: connectionIdentifier = %@", [twitterEngine getPublicTimeline]);
 
 	// Other types of information available from the API:
 	
@@ -51,11 +51,11 @@
 	#define TESTING_MESSAGE_ID 52182684
 	
 	// Status methods:
-	NSLog(@"getHomeTimelineFor: connectionIdentifier = %@", [twitterEngine getHomeTimelineSinceID:0 startingAtPage:0 count:20]);
-	NSLog(@"getUserTimelineFor: connectionIdentifier = %@", [twitterEngine getUserTimelineFor:TESTING_SECONDARY_USER sinceID:0 startingAtPage:0 count:3]);
-	NSLog(@"getUpdate: connectionIdentifier = %@", [twitterEngine getUpdate:TESTING_ID]);
+	//NSLog(@"getHomeTimelineFor: connectionIdentifier = %@", [twitterEngine getHomeTimelineSinceID:0 startingAtPage:0 count:20]);
+	//NSLog(@"getUserTimelineFor: connectionIdentifier = %@", [twitterEngine getUserTimelineFor:TESTING_SECONDARY_USER sinceID:0 startingAtPage:0 count:3]);
+	//NSLog(@"getUpdate: connectionIdentifier = %@", [twitterEngine getUpdate:TESTING_ID]);
 	//NSLog(@"sendUpdate: connectionIdentifier = %@", [twitterEngine sendUpdate:[@"This is a test on " stringByAppendingString:[[NSDate date] description]]]);
-	NSLog(@"getRepliesStartingAtPage: connectionIdentifier = %@", [twitterEngine getRepliesStartingAtPage:0]);
+	//NSLog(@"getRepliesStartingAtPage: connectionIdentifier = %@", [twitterEngine getRepliesStartingAtPage:0]);
 	//NSLog(@"deleteUpdate: connectionIdentifier = %@", [twitterEngine deleteUpdate:TESTING_ID]);
 
 	// User methods:
