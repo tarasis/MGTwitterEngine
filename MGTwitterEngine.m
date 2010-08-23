@@ -1625,6 +1625,22 @@
 	
 }
 
+- (NSString *) deleteList:(NSString *)listname forUser:(NSString *)username
+{
+	if(!listname || !username)
+		return nil;
+	
+	NSString *path = [NSString stringWithFormat:@"%@/lists/%@.%@", username, listname, API_FORMAT];
+	NSDictionary * params = [NSDictionary dictionaryWithObject:@"DELETE" forKey:@"_method"]; 
+
+	NSString *body = [self _queryStringWithBase:nil parameters:params prefixed:NO];
+    
+    return [self _sendRequestWithMethod:HTTP_POST_METHOD path:path queryParameters:params body:body 
+                            requestType:MGTwitterUserListsDeleteRequest 
+                           responseType:MGTwitterUserLists];
+	
+}
+
 
 #pragma mark Friendship methods
 
