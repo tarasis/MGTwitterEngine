@@ -140,6 +140,8 @@
 - (NSString *)createList:(NSString *)listname forUser:(NSString *) username withPrivacyMode:(BOOL) privacyLevel andDescription: (NSString *) description;
 - (NSString *)updateList:(NSString *)listname forUser:(NSString *) username withOptions:(NSDictionary *) options;
 - (NSString *)deleteList:(NSString *)listname forUser:(NSString *) username;
+- (NSString *)getListSubscriptionsForUser:(NSString *)username;
+- (NSString *)getListMembershipsForUser:(NSString *)username;
 
 // Direct Message methods
 

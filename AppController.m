@@ -115,6 +115,8 @@
 	//NSLog(@"getList: connectionIdentifier =%@", [twitterEngine getList:@"test3" forUser:TESTING_SECONDARY_USER]);
 	
 	//NSLog(@"getListsForUser: connectionIdentifier = %@", [twitterEngine getListsForUser:TESTING_SECONDARY_USER]);
+	//NSLog(@"getListSubscriptionsForUser: connectionIdentifier = %@", [twitterEngine getListSubscriptionsForUser:TESTING_SECONDARY_USER]);
+	//NSLog(@"getListMembershipsForUser: connectionIdentifier = %@", [twitterEngine getListMembershipsForUser:TESTING_SECONDARY_USER]);
 	
 	
 #if YAJL_AVAILABLE || TOUCHJSON_AVAILABLE

@@ -1654,6 +1654,33 @@
 	
 }
 
+- (NSString *)getListSubscriptionsForUser:(NSString *)username
+{
+	if (!username)
+		return nil;
+	
+	NSString *path = [NSString stringWithFormat:@"%@/lists/subscriptions.%@", username, API_FORMAT];
+	
+	return [self _sendRequestWithMethod:nil path:path queryParameters:nil body:nil 
+							requestType:MGTwitterUserListSubscriptionsRequest
+						   responseType:MGTwitterUserLists];
+	
+}
+
+- (NSString *)getListMembershipsForUser:(NSString *)username
+{
+	if (!username)
+		return nil;
+	
+	NSString *path = [NSString stringWithFormat:@"%@/lists/memberships.%@", username, API_FORMAT];
+	
+	return [self _sendRequestWithMethod:nil path:path queryParameters:nil body:nil 
+							requestType:MGTwitterUserListMembershipsRequest
+						   responseType:MGTwitterUserLists];
+	
+}
+
+
 
 #pragma mark Friendship methods
 
