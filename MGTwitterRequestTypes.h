@@ -50,7 +50,7 @@ typedef enum _MGTwitterRequestType {
 	MGTwitterUserListsRequest, // fetch a users lists, includes private lists if authenticated
     MGTwitterUserListCreateRequest, // request creation of specified list
 	MGTwitterUserListUpdateRequest, // update details of the list: name/privacy mode/description
-	MGTwitterUserListsDeleteRequest, // request to delete the specified list
+	MGTwitterUserListDeleteRequest, // request to delete the specified list
 #if YAJL_AVAILABLE || TOUCHJSON_AVAILABLE
 	MGTwitterSearchRequest, // performing a search
 	MGTwitterSearchCurrentTrendsRequest, // getting the current trends

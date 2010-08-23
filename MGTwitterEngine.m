@@ -1636,7 +1636,7 @@
 	NSString *body = [self _queryStringWithBase:nil parameters:params prefixed:NO];
     
     return [self _sendRequestWithMethod:HTTP_POST_METHOD path:path queryParameters:params body:body 
-                            requestType:MGTwitterUserListsDeleteRequest 
+                            requestType:MGTwitterUserListDeleteRequest 
                            responseType:MGTwitterUserLists];
 	
 }
