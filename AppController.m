@@ -110,6 +110,7 @@
     //NSLog(@"createList: connectionIdentifier =%@", [twitterEngine createList:@"test1" forUser:TESTING_SECONDARY_USER withPrivacyMode:PRIVATE andDescription:@"A test of list creation"]);
     //NSLog(@"createList: connectionIdentifier =%@", [twitterEngine createList:@"test3" forUser:TESTING_SECONDARY_USER withPrivacyMode:PRIVATE andDescription:nil]);
 	//NSDictionary * testOptions = [NSDictionary dictionaryWithObjectsAndKeys:@"training-hard", @"name", @"my training buddies", @"description", nil]; 
+	// note the listname to update can be either the original list name OR the list ID as a string
 	//NSLog(@"updateList: connectionIdentifier =%@", [twitterEngine updateList:@"19583549" forUser:TESTING_SECONDARY_USER withOptions:testOptions]);
 	
 	//NSLog(@"getListsForUser: connectionIdentifier = %@", [twitterEngine getListsForUser:TESTING_SECONDARY_USER]);
