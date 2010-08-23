@@ -112,6 +112,7 @@
 	// note the listname to update can be either the original list name OR the list ID as a string
 	//NSLog(@"updateList: connectionIdentifier =%@", [twitterEngine updateList:@"test3" forUser:TESTING_SECONDARY_USER withOptions:testOptions]);
 	//NSLog(@"deleteList: connectionIdentifier = %@", [twitterEngine deleteList:@"test3" forUser:TESTING_SECONDARY_USER]);
+	//NSLog(@"getList: connectionIdentifier =%@", [twitterEngine getList:@"test3" forUser:TESTING_SECONDARY_USER]);
 	
 	//NSLog(@"getListsForUser: connectionIdentifier = %@", [twitterEngine getListsForUser:TESTING_SECONDARY_USER]);
 	

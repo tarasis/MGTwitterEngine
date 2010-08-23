@@ -1544,6 +1544,19 @@
                            responseType:MGTwitterUserLists];
 }
 
+- (NSString *)getList:(NSString *)listname forUser:(NSString *)username
+{
+	if (!listname || !username)
+		return nil;
+	
+	NSString *path = [NSString stringWithFormat:@"%@/lists/%@.%@", username, listname, API_FORMAT];
+
+	return [self _sendRequestWithMethod:nil path:path queryParameters:nil body:nil 
+							requestType:MGTwitterUserListRequest
+						   responseType:MGTwitterUserLists];
+	
+}
+
 - (NSString *)createList:(NSString *)listname forUser: (NSString*) username withPrivacyMode:(BOOL) privacyLevel andDescription: (NSString *) description;
 {
     if (!listname || !username) {

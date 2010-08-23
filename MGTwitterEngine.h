@@ -136,6 +136,7 @@
 
 //	List Methods
 - (NSString *)getListsForUser:(NSString *)username;
+- (NSString *)getList:(NSString *) listname forUser:(NSString *) username;
 - (NSString *)createList:(NSString *)listname forUser:(NSString *) username withPrivacyMode:(BOOL) privacyLevel andDescription: (NSString *) description;
 - (NSString *)updateList:(NSString *)listname forUser:(NSString *) username withOptions:(NSDictionary *) options;
 - (NSString *)deleteList:(NSString *)listname forUser:(NSString *) username;
