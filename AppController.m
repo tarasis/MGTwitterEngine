@@ -109,8 +109,11 @@
 	// List Methods
     //NSLog(@"createList: connectionIdentifier =%@", [twitterEngine createList:@"test1" forUser:TESTING_SECONDARY_USER withPrivacyMode:PRIVATE andDescription:@"A test of list creation"]);
     //NSLog(@"createList: connectionIdentifier =%@", [twitterEngine createList:@"test3" forUser:TESTING_SECONDARY_USER withPrivacyMode:PRIVATE andDescription:nil]);
-
-	NSLog(@"getListsForUser: connectionIdentifier = %@", [twitterEngine getListsForUser:TESTING_SECONDARY_USER]);
+	//NSDictionary * testOptions = [NSDictionary dictionaryWithObjectsAndKeys:@"training-hard", @"name", @"my training buddies", @"description", nil]; 
+	//NSLog(@"updateList: connectionIdentifier =%@", [twitterEngine updateList:@"19583549" forUser:TESTING_SECONDARY_USER withOptions:testOptions]);
+	
+	//NSLog(@"getListsForUser: connectionIdentifier = %@", [twitterEngine getListsForUser:TESTING_SECONDARY_USER]);
+	
 	
 #if YAJL_AVAILABLE || TOUCHJSON_AVAILABLE
 	// Search method

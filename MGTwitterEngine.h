@@ -137,6 +137,7 @@
 //	List Methods
 - (NSString *)getListsForUser:(NSString *)username;
 - (NSString *)createList:(NSString *)listname forUser:(NSString *) username withPrivacyMode:(BOOL) privacyLevel andDescription: (NSString *) description;
+- (NSString *)updateList:(NSString *)listname forUser:(NSString *) username withOptions:(NSDictionary *) options;
 
 // Direct Message methods
 

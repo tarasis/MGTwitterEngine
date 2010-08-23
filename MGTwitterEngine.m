@@ -1581,6 +1581,50 @@
                            responseType:MGTwitterUserLists];
 }
 
+- (NSString *) updateList:(NSString *)listname forUser:(NSString *)username withOptions:(NSDictionary *)options
+{
+	if (!listname || !username) { // poss check if options has at least 1 entry?
+		return nil;
+	}
+	
+	NSString *path = [NSString stringWithFormat:@"%@/lists/%@.%@", username, listname, API_FORMAT];
+	
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:0];
+
+	NSString * newName = [options objectForKey:@"name"]; 
+	NSString * newPrivacyMode = [options objectForKey:@"mode"];
+	NSString * newDescription = [options objectForKey:@"description"];
+	
+	if (newName)
+	{
+		[params setObject:newName forKey:@"name"];
+	}
+	
+	if (newPrivacyMode)
+	{
+		[params setObject:newPrivacyMode forKey:@"mode"];
+	}
+		 
+	if (newDescription) 
+	{
+		 
+		NSString *trimmedText = newDescription;
+		if ([trimmedText length] > MAX_DESCRIPTION_LENGTH) 
+		{
+			trimmedText = [trimmedText substringToIndex:MAX_DESCRIPTION_LENGTH];
+		}
+    
+        [params setObject:trimmedText forKey:@"description"];        
+    }
+	
+    NSString *body = [self _queryStringWithBase:nil parameters:params prefixed:NO];
+    
+    return [self _sendRequestWithMethod:HTTP_POST_METHOD path:path queryParameters:params body:body 
+                            requestType:MGTwitterUserListUpdateRequest 
+                           responseType:MGTwitterUserLists];
+	
+}
+
 
 #pragma mark Friendship methods
 
