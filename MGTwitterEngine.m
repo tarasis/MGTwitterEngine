@@ -853,7 +853,6 @@
 								  responseType:responseType];
 			break;
 		case MGTwitterUserLists:
-			NSLog(@"response type: %d", responseType);
 			[MGTwitterUserListsParser parserWithXML:xmlData delegate:self 
 						  connectionIdentifier:identifier requestType:requestType 
 								  responseType:responseType];
@@ -888,7 +887,6 @@
                  withParsedObjects:(NSArray *)parsedObjects
 {
     // Forward appropriate message to _delegate, depending on responseType.
-	NSLog(@"here at parsingSucceededForRequest");
     switch (responseType) {
         case MGTwitterStatuses:
         case MGTwitterStatus:
@@ -1545,6 +1543,44 @@
                             requestType:MGTwitterUserListsRequest 
                            responseType:MGTwitterUserLists];
 }
+
+- (NSString *)createList:(NSString *)listname forUser: (NSString*) username withPrivacyMode:(BOOL) privacyLevel andDescription: (NSString *) description;
+{
+    if (!listname || !username) {
+        return nil;
+    }
+
+	NSString *path = [NSString stringWithFormat:@"%@/lists.%@", username, API_FORMAT];
+        
+    NSString *trimmedText = description;
+    if ([trimmedText length] > MAX_DESCRIPTION_LENGTH) {
+        trimmedText = [trimmedText substringToIndex:MAX_DESCRIPTION_LENGTH];
+    }
+    
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:0];
+	[params setObject:listname forKey:@"name"];
+    
+    if (privacyLevel == PUBLIC)
+    {
+        [params setObject:@"public" forKey:@"mode"];
+    }
+    else
+    {
+        [params setObject:@"private" forKey:@"mode"];        
+    }
+    
+    if (trimmedText) 
+    {
+        [params setObject:trimmedText forKey:@"description"];        
+    }
+    NSString *body = [self _queryStringWithBase:nil parameters:params prefixed:NO];
+    
+    
+    return [self _sendRequestWithMethod:HTTP_POST_METHOD path:path queryParameters:params body:body 
+                            requestType:MGTwitterUserListCreateRequest 
+                           responseType:MGTwitterUserLists];
+}
+
 
 #pragma mark Friendship methods
 

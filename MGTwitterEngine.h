@@ -13,6 +13,8 @@
 
 #import "OAToken.h"
 
+#define PUBLIC TRUE
+#define PRIVATE FALSE
 
 @interface MGTwitterEngine : NSObject <MGTwitterParserDelegate>
 {
@@ -134,6 +136,7 @@
 
 //	List Methods
 - (NSString *)getListsForUser:(NSString *)username;
+- (NSString *)createList:(NSString *)listname forUser:(NSString *) username withPrivacyMode:(BOOL) privacyLevel andDescription: (NSString *) description;
 
 // Direct Message methods
 

@@ -106,6 +106,12 @@
 	//NSLog(@"getFriendIDsFor: connectionIdentifier = %@", [twitterEngine getFriendIDsFor:TESTING_SECONDARY_USER startingFromCursor:-1]);
 	//NSLog(@"getFollowerIDsFor: connectionIdentifier = %@", [twitterEngine getFollowerIDsFor:TESTING_SECONDARY_USER startingFromCursor:-1]);
 
+	// List Methods
+    //NSLog(@"createList: connectionIdentifier =%@", [twitterEngine createList:@"test1" forUser:TESTING_SECONDARY_USER withPrivacyMode:PRIVATE andDescription:@"A test of list creation"]);
+    //NSLog(@"createList: connectionIdentifier =%@", [twitterEngine createList:@"test3" forUser:TESTING_SECONDARY_USER withPrivacyMode:PRIVATE andDescription:nil]);
+
+	NSLog(@"getListsForUser: connectionIdentifier = %@", [twitterEngine getListsForUser:TESTING_SECONDARY_USER]);
+	
 #if YAJL_AVAILABLE || TOUCHJSON_AVAILABLE
 	// Search method
 	//NSLog(@"getSearchResultsForQuery: connectionIdentifier = %@", [twitterEngine getSearchResultsForQuery:TESTING_PRIMARY_USER sinceID:0 startingAtPage:1 count:20]);
