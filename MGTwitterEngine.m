@@ -1537,6 +1537,9 @@
 
 - (NSString *)getListsForUser:(NSString *)username
 {
+	if (!username)
+		return nil;
+	
 	NSString *path = [NSString stringWithFormat:@"%@/lists.%@", username, API_FORMAT];
     
     return [self _sendRequestWithMethod:nil path:path queryParameters:nil body:nil 
@@ -1546,7 +1549,7 @@
 
 - (NSString *)getList:(NSString *)listname forUser:(NSString *)username
 {
-	if (!listname || !username)
+	if (!listname && !username)
 		return nil;
 	
 	NSString *path = [NSString stringWithFormat:@"%@/lists/%@.%@", username, listname, API_FORMAT];
@@ -1557,13 +1560,13 @@
 	
 }
 
-- (NSString *)createList:(NSString *)listname forUser: (NSString*) username withPrivacyMode:(BOOL) privacyLevel andDescription: (NSString *) description;
+- (NSString *)createList:(NSString *)listname withPrivacyMode:(BOOL) privacyLevel andDescription: (NSString *) description;
 {
-    if (!listname || !username) {
+    if (!listname) {
         return nil;
     }
 
-	NSString *path = [NSString stringWithFormat:@"%@/lists.%@", username, API_FORMAT];
+	NSString *path = [NSString stringWithFormat:@"%@/lists.%@", [self username], API_FORMAT];
         
     NSString *trimmedText = description;
     if ([trimmedText length] > MAX_DESCRIPTION_LENGTH) {
@@ -1594,13 +1597,13 @@
                            responseType:MGTwitterUserLists];
 }
 
-- (NSString *) updateList:(NSString *)listname forUser:(NSString *)username withOptions:(NSDictionary *)options
+- (NSString *) updateList:(NSString *)listname withOptions:(NSDictionary *)options
 {
-	if (!listname || !username) { // poss check if options has at least 1 entry?
+	if (!listname) { // poss check if options has at least 1 entry?
 		return nil;
 	}
 	
-	NSString *path = [NSString stringWithFormat:@"%@/lists/%@.%@", username, listname, API_FORMAT];
+	NSString *path = [NSString stringWithFormat:@"%@/lists/%@.%@", [self username], listname, API_FORMAT];
 	
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:0];
 
@@ -1638,12 +1641,12 @@
 	
 }
 
-- (NSString *) deleteList:(NSString *)listname forUser:(NSString *)username
+- (NSString *) deleteList:(NSString *)listname
 {
-	if(!listname || !username)
+	if(!listname)
 		return nil;
 	
-	NSString *path = [NSString stringWithFormat:@"%@/lists/%@.%@", username, listname, API_FORMAT];
+	NSString *path = [NSString stringWithFormat:@"%@/lists/%@.%@", [self username], listname, API_FORMAT];
 	NSDictionary * params = [NSDictionary dictionaryWithObject:@"DELETE" forKey:@"_method"]; 
 
 	NSString *body = [self _queryStringWithBase:nil parameters:params prefixed:NO];
