@@ -144,6 +144,10 @@
 - (NSString *)getListMembershipsForUser:(NSString *)username;
 - (NSString *)getStatusesForList:(NSString *)listname byUser:(NSString *) username withOptions:(NSDictionary *) options;
 
+// List Member methods
+
+- (NSString *)addUser:(NSString *) user toList:(NSString *)list;
+
 // Direct Message methods
 
 - (NSString *)getDirectMessagesSinceID:(MGTwitterEngineID)sinceID startingAtPage:(int)pageNum; // direct_messages

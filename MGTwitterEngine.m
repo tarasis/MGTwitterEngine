@@ -1731,6 +1731,24 @@
                            responseType:MGTwitterStatus];
 }
 
+#pragma mark List Membership methods
+
+- (NSString *) addUser:(NSString *)user toList:(NSString *)list
+{
+	if (!user && !list) {
+		return nil;
+	}
+
+	NSString *path = [NSString stringWithFormat:@"%@/%@/members.%@", [self username], list, API_FORMAT];
+	NSDictionary * params = [NSDictionary dictionaryWithObject:user forKey:@"id"];
+
+	NSString *body = [self _queryStringWithBase:nil parameters:params prefixed:NO];
+
+    return [self _sendRequestWithMethod:HTTP_POST_METHOD path:path queryParameters:params body:body
+                            requestType:MGTwitterUserListMembershipAddRequest
+                           responseType:MGTwitterUserLists];
+}
+
 
 
 #pragma mark Friendship methods

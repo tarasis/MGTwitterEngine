@@ -124,6 +124,8 @@
 	//NSDictionary * testOptions = [NSDictionary dictionaryWithObjectsAndKeys:@"5", @"per_page", nil];
 	//NSLog(@"getStatusForList: connectionIdentifier = %@", [twitterEngine getStatusesForList:@"famous-people" byUser:@"tarasis" withOptions:testOptions]);
 	
+	//NSLog(@"addUser:toList: connectionIdentifier = %@", [twitterEngine addUser:TESTING_SECONDARY_USER toList:@"test3"]);
+
 #if YAJL_AVAILABLE || TOUCHJSON_AVAILABLE
 	// Search method
 	//NSLog(@"getSearchResultsForQuery: connectionIdentifier = %@", [twitterEngine getSearchResultsForQuery:TESTING_PRIMARY_USER sinceID:0 startingAtPage:1 count:20]);
