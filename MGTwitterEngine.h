@@ -151,6 +151,8 @@
 
 - (NSString	*)deleteUser:(NSString *) user fromList:(NSString *)list; // :user/:list_id/members
 
+- (NSString *)getListMembersForList:(NSString *) list ownedBy:(NSString *) user withOptions:(NSDictionary *) options;
+
 // Direct Message methods
 
 - (NSString *)getDirectMessagesSinceID:(MGTwitterEngineID)sinceID startingAtPage:(int)pageNum; // direct_messages

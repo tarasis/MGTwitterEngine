@@ -130,6 +130,9 @@
 	//NSLog(@"addUsers:toList: connectionIdentifier = %@", [twitterEngine addUsers:userList toList:@"test3"]);
 	
 	//NSLog(@"deleteUser:fromList: connectionIdentifier = %@", [twitterEngine deleteUser:TESTING_SECONDARY_USER fromList:@"test3"]);
+	
+	//NSDictionary * testOptions = [NSDictionary dictionaryWithObjectsAndKeys:@"-1", @"cursor", nil];
+	//NSLog(@"getListMembersForList: connectionIdentifier = %@", [twitterEngine getListMembersForList:@"test3" ownedBy:TESTING_PRIMARY_USER withOptions:testOptions]);
 
 #if YAJL_AVAILABLE || TOUCHJSON_AVAILABLE
 	// Search method
