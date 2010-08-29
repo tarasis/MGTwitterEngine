@@ -1831,12 +1831,12 @@
                            responseType:MGTwitterUser];
 }
 
-- (NSString *) isUser:(NSString *)user aMemberOfList :(NSString *)list withOptions:(NSDictionary *)options
+- (NSString *) isUser:(NSString *)user aMemberOfList :(NSString *)list ownedBy:(NSString *) owner withOptions:(NSDictionary *)options
 {
 	if (!user || !list)
 		return nil;
 	
-	NSString *path = [NSString stringWithFormat:@"%@/%@/members/%@.%@", [self username], list, user, API_FORMAT];
+	NSString *path = [NSString stringWithFormat:@"%@/%@/members/%@.%@", owner, list, user, API_FORMAT];
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:0];
 	
 	NSString * includeEntities = [options objectForKey:@"include_entities"];

@@ -153,7 +153,7 @@
 
 - (NSString *)getListMembersForList:(NSString *) list ownedBy:(NSString *) user withOptions:(NSDictionary *) options;
 
-- (NSString *)isUser:(NSString *) user aMemberOfList:(NSString *) list withOptions:(NSDictionary *)options;
+- (NSString *)isUser:(NSString *) user aMemberOfList:(NSString *) list ownedBy:(NSString *) owner withOptions:(NSDictionary *)options;
 
 // List Subscriber methods
 

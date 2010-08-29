@@ -135,7 +135,7 @@
 	//NSLog(@"getListMembersForList: connectionIdentifier = %@", [twitterEngine getListMembersForList:@"test3" ownedBy:TESTING_PRIMARY_USER withOptions:testOptions]);
 
 	//NSDictionary * testOptions = [NSDictionary dictionaryWithObjectsAndKeys:@"true", @"include_entities", nil];
-	//NSLog(@"isUser:aMemberOfList: connectionIdentifier = %@", [twitterEngine isUser:@"duemoko" aMemberOfList:@"test3" withOptions:nil]);
+	//NSLog(@"isUser:aMemberOfList: connectionIdentifier = %@", [twitterEngine isUser:@"todd" aMemberOfList:@"team" ownedBy:@"twitterapi" withOptions:nil]);
 
 	//NSDictionary * testOptions = [NSDictionary dictionaryWithObjectsAndKeys:@"-1", @"cursor", nil];
 	//NSLog(@"getSubscribersOfList: connectionIdentifier = %@", [twitterEngine getSubscribersOfList:@"team" ownedBy:@"twitterapi" withOptions:nil]);
