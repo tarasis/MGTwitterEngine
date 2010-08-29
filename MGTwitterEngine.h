@@ -161,6 +161,8 @@
 
 - (NSString *)isUser:(NSString *) user subscribedToList:(NSString *) list ownedBy:(NSString *) owner withOptions:(NSDictionary *) options;
 
+- (NSString *)followList:(NSString *) list ownedBy:(NSString *) owner;
+
 // Direct Message methods
 
 - (NSString *)getDirectMessagesSinceID:(MGTwitterEngineID)sinceID startingAtPage:(int)pageNum; // direct_messages

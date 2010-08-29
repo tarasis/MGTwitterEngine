@@ -142,6 +142,8 @@
 
 	//NSDictionary * testOptions = [NSDictionary dictionaryWithObjectsAndKeys:@"true", @"include_entities", nil];
 	//NSLog(@"isUser:subscribedToList: connectionIdentifier = %@", [twitterEngine isUser:@"tarasis" subscribedToList:@"team" ownedBy:@"twitterapi" withOptions:nil]);
+
+	//NSLog(@"followList:ownedBy: connectionIdentifier = %@", [twitterEngine followList:@"team" ownedBy:@"twitterapi"]);
 	
 #if YAJL_AVAILABLE || TOUCHJSON_AVAILABLE
 	// Search method
