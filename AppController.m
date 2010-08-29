@@ -128,6 +128,8 @@
 	
 	//NSArray * userList = [NSArray arrayWithObjects:@"twitterapi", @"twitter", TESTING_PRIMARY_USER, TESTING_SECONDARY_USER, nil];
 	//NSLog(@"addUsers:toList: connectionIdentifier = %@", [twitterEngine addUsers:userList toList:@"test3"]);
+	
+	//NSLog(@"deleteUser:fromList: connectionIdentifier = %@", [twitterEngine deleteUser:TESTING_SECONDARY_USER fromList:@"test3"]);
 
 #if YAJL_AVAILABLE || TOUCHJSON_AVAILABLE
 	// Search method

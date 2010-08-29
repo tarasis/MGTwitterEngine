@@ -149,6 +149,8 @@
 - (NSString *)addUser:(NSString *) user toList:(NSString *)list; // :user/:list_id/members
 - (NSString *)addUsers:(NSArray *) users toList:(NSString *)list; // :user/:list_id/members/create_all
 
+- (NSString	*)deleteUser:(NSString *) user fromList:(NSString *)list; // :user/:list_id/members
+
 // Direct Message methods
 
 - (NSString *)getDirectMessagesSinceID:(MGTwitterEngineID)sinceID startingAtPage:(int)pageNum; // direct_messages
