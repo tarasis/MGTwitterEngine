@@ -60,6 +60,7 @@
 #define MAX_URL_LENGTH			100
 #define MAX_LOCATION_LENGTH		30
 #define MAX_DESCRIPTION_LENGTH	160
+#define MAX_MEMBERS_PER_REQUEST 99
 
 #define DEFAULT_CLIENT_NAME     @"MGTwitterEngine"
 #define DEFAULT_CLIENT_VERSION  @"1.0"
@@ -1735,12 +1736,48 @@
 
 - (NSString *) addUser:(NSString *)user toList:(NSString *)list
 {
-	if (!user && !list) {
+	if (!user || !list) {
 		return nil;
 	}
 
 	NSString *path = [NSString stringWithFormat:@"%@/%@/members.%@", [self username], list, API_FORMAT];
 	NSDictionary * params = [NSDictionary dictionaryWithObject:user forKey:@"id"];
+
+	NSString *body = [self _queryStringWithBase:nil parameters:params prefixed:NO];
+
+    return [self _sendRequestWithMethod:HTTP_POST_METHOD path:path queryParameters:params body:body
+                            requestType:MGTwitterUserListMembershipAddRequest
+                           responseType:MGTwitterUserLists];
+}
+
+- (NSString *) addUsers:(NSArray *)users toList:(NSString *)list
+{
+	if (!users || !list) {
+		return nil;
+	}
+
+	NSString *path = [NSString stringWithFormat:@"%@/%@/members/create_all.%@", [self username], list, API_FORMAT];
+
+	NSMutableString * usersString = [NSMutableString string];
+	NSUInteger index = 1;
+	NSUInteger arraySize = [users count];
+
+	for (NSString * user in users)
+	{
+		[usersString appendString:[user description]];
+
+		if (index < arraySize && index < (MAX_MEMBERS_PER_REQUEST-1))
+		{
+			[usersString appendString:@","];
+		}
+
+		if (++index == MAX_MEMBERS_PER_REQUEST)
+		{
+			break;
+		}
+	}
+
+	NSDictionary * params = [NSDictionary dictionaryWithObject:usersString forKey:@"screen_name"];
 
 	NSString *body = [self _queryStringWithBase:nil parameters:params prefixed:NO];
 

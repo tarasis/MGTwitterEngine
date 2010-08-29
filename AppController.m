@@ -125,6 +125,9 @@
 	//NSLog(@"getStatusForList: connectionIdentifier = %@", [twitterEngine getStatusesForList:@"famous-people" byUser:@"tarasis" withOptions:testOptions]);
 	
 	//NSLog(@"addUser:toList: connectionIdentifier = %@", [twitterEngine addUser:TESTING_SECONDARY_USER toList:@"test3"]);
+	
+	//NSArray * userList = [NSArray arrayWithObjects:@"twitterapi", @"twitter", TESTING_PRIMARY_USER, TESTING_SECONDARY_USER, nil];
+	//NSLog(@"addUsers:toList: connectionIdentifier = %@", [twitterEngine addUsers:userList toList:@"test3"]);
 
 #if YAJL_AVAILABLE || TOUCHJSON_AVAILABLE
 	// Search method

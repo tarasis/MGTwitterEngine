@@ -146,7 +146,8 @@
 
 // List Member methods
 
-- (NSString *)addUser:(NSString *) user toList:(NSString *)list;
+- (NSString *)addUser:(NSString *) user toList:(NSString *)list; // :user/:list_id/members
+- (NSString *)addUsers:(NSArray *) users toList:(NSString *)list; // :user/:list_id/members/create_all
 
 // Direct Message methods
 
