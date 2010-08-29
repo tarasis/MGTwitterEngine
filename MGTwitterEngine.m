@@ -1854,6 +1854,36 @@
 	
 }
 
+#pragma mark List Subscribers methods
+
+- (NSString *) getSubscribersOfList:(NSString *)list ownedBy:(NSString *)user withOptions:(NSDictionary *)options
+{
+	if (!list || !user)
+		return nil;
+	
+	NSString *path = [NSString stringWithFormat:@"%@/%@/subscribers.%@", user, list, API_FORMAT];
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:0];
+	
+	NSString * cursor = [options objectForKey:@"cursor"];
+	NSString * includeEntities = [options objectForKey:@"include_entities"];
+	
+	if (cursor)
+	{
+		[params setObject:cursor forKey:@"cursor"];
+	}
+
+	if (includeEntities)
+	{
+		[params setObject:includeEntities forKey:@"include_entities"];
+	}
+	
+	NSString *body = [self _queryStringWithBase:nil parameters:params prefixed:NO];
+	
+    return [self _sendRequestWithMethod:nil path:path queryParameters:params body:body
+                            requestType:MGTwitterUserListSubscribersRequest
+                           responseType:MGTwitterUser];
+}
+
 #pragma mark Friendship methods
 
 

@@ -155,6 +155,10 @@
 
 - (NSString *)isUser:(NSString *) user aMemberOfList:(NSString *) list withOptions:(NSDictionary *)options;
 
+// List Subscriber methods
+
+- (NSString *)getSubscribersOfList:(NSString *) list ownedBy:(NSString *) user withOptions:(NSDictionary*)options;
+
 // Direct Message methods
 
 - (NSString *)getDirectMessagesSinceID:(MGTwitterEngineID)sinceID startingAtPage:(int)pageNum; // direct_messages

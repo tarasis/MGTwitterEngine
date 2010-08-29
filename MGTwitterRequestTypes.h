@@ -59,6 +59,7 @@ typedef enum _MGTwitterRequestType {
 	MGTwitterUserListMembershipDeleteRequest, // delete a user from a list
 	MGTwitterUserListMembershipListRequest, // list members of a list
 	MGTwitterUserListMembershipCheckRequest,
+	MGTwitterUserListSubscribersRequest, // request subscribers to a particular list
 #if YAJL_AVAILABLE || TOUCHJSON_AVAILABLE
 	MGTwitterSearchRequest, // performing a search
 	MGTwitterSearchCurrentTrendsRequest, // getting the current trends
