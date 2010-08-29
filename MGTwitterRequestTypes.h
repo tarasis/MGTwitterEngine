@@ -62,6 +62,7 @@ typedef enum _MGTwitterRequestType {
 	MGTwitterUserListSubscribersRequest, // request subscribers to a particular list
 	MGTwitterUserListSubscribersCheckRequest, // check if a user is subscribed to a particular list
 	MGTwitterUserListSubscribersFollowRequest, // subscribe / follow a list
+	MGTwitterUserListSubscribersUnFollowRequest, // unsubscribe / unfollow a list
 #if YAJL_AVAILABLE || TOUCHJSON_AVAILABLE
 	MGTwitterSearchRequest, // performing a search
 	MGTwitterSearchCurrentTrendsRequest, // getting the current trends

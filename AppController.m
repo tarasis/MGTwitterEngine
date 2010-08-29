@@ -144,6 +144,7 @@
 	//NSLog(@"isUser:subscribedToList: connectionIdentifier = %@", [twitterEngine isUser:@"tarasis" subscribedToList:@"team" ownedBy:@"twitterapi" withOptions:nil]);
 
 	//NSLog(@"followList:ownedBy: connectionIdentifier = %@", [twitterEngine followList:@"team" ownedBy:@"twitterapi"]);
+	//NSLog(@"unfollowList:ownedBy: connectionIdentifier = %@", [twitterEngine unfollowList:@"team" ownedBy:@"twitterapi"]);
 	
 #if YAJL_AVAILABLE || TOUCHJSON_AVAILABLE
 	// Search method

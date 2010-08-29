@@ -1920,6 +1920,23 @@
 	
 }
 
+- (NSString *) unfollowList:(NSString *)list ownedBy:(NSString *)owner
+{
+	if (!list || !owner) {
+		return nil;
+	}
+	
+	NSString *path = [NSString stringWithFormat:@"%@/%@/subscribers.%@", owner, list, API_FORMAT];
+	
+	NSDictionary * params = [NSDictionary dictionaryWithObject:@"DELETE" forKey:@"_method"];
+	
+	NSString *body = [self _queryStringWithBase:nil parameters:params prefixed:NO];
+	
+    return [self _sendRequestWithMethod:HTTP_POST_METHOD path:path queryParameters:params body:body
+                            requestType:MGTwitterUserListSubscribersUnFollowRequest
+                           responseType:MGTwitterUserLists];	
+}
+
 #pragma mark Friendship methods
 
 
