@@ -668,8 +668,7 @@
 	NSMutableURLRequest *theRequest = nil;
     if(_accessToken){
 		theRequest = [[[OAMutableURLRequest alloc] initWithURL:finalURL
-													  consumer:[[[OAConsumer alloc] initWithKey:[self consumerKey]
-																						 secret:[self consumerSecret]] autorelease]
+													  consumer:[[(OAConsumer*) [OAConsumer alloc] initWithKey:[self consumerKey] secret:[self consumerSecret]] autorelease]
 														 token:_accessToken
 														 realm:nil
 											 signatureProvider:nil] autorelease];
@@ -2014,7 +2013,7 @@
 
 - (NSString *)getXAuthAccessTokenForUsername:(NSString *)username 
 									password:(NSString *)password{
-	OAConsumer *consumer = [[[OAConsumer alloc] initWithKey:[self consumerKey] secret:[self consumerSecret]] autorelease];
+	OAConsumer *consumer = [[(OAConsumer*) [OAConsumer alloc] initWithKey:[self consumerKey] secret:[self consumerSecret]] autorelease];
 	
 	OAMutableURLRequest *request = [[OAMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"https://api.twitter.com/oauth/access_token"]
 																   consumer:consumer
