@@ -642,7 +642,7 @@
 	}
 #endif
 	
-#if SET_AUTHORIZATION_IN_HEADER
+#if !SET_AUTHORIZATION_IN_HEADER
     NSString *urlString = [NSString stringWithFormat:@"%@://%@/%@", 
                            connectionType,
                            domain, fullPath];
@@ -1125,7 +1125,7 @@
     [params setObject:[NSString stringWithFormat:@"%d", count] forKey:@"count"];
   }
   
-  return [self _sendRequestWithMethod:nil path:path queryParameters:params body:nil 
+  return [self _sendRequestWithMethod:HTTP_POST_METHOD path:path queryParameters:params body:nil 
                           requestType:MGTwitterHomeTimelineRequest 
                          responseType:MGTwitterStatuses];
   
