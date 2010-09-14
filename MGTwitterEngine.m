@@ -2147,8 +2147,6 @@
                                                          requestType:MGTwitterOAuthTokenRequest
                                                         responseType:MGTwitterOAuthToken];
     [request release];
-    
-    [request release], request = nil;
 
     if (!connection) {
         return nil;
