@@ -8,10 +8,6 @@
 
 #import "MGTwitterUsersYAJLParser.h"
 
-#ifndef DEBUG_PARSING
-#define DEBUG_PARSING 0
-#endif
-
 @implementation MGTwitterUsersYAJLParser
 
 - (void)addValue:(id)value forKey:(NSString *)key
@@ -19,24 +15,18 @@
 	if (_status)
 	{
 		[_status setObject:value forKey:key];
-#if DEBUG_PARSING
-		NSLog(@"user:   status: %@ = %@ (%@)", key, value, NSStringFromClass([value class]));
-#endif
+		MGTwitterLogParsing(@"user:   status: %@ = %@ (%@)", key, value, NSStringFromClass([value class]));
 	}
 	else if (_user)
 	{
 		[_user setObject:value forKey:key];
-#if DEBUG_PARSING
-		NSLog(@"user:   user: %@ = %@ (%@)", key, value, NSStringFromClass([value class]));
-#endif
+		MGTwitterLogParsing(@"user:   user: %@ = %@ (%@)", key, value, NSStringFromClass([value class]));
 	}
 }
 
 - (void)startDictionaryWithKey:(NSString *)key
 {
-#if DEBUG_PARSING
-	NSLog(@"user: dictionary start = %@", key);
-#endif
+	MGTwitterLogParsing(@"user: dictionary start = %@", key);
 
 	if (! _user)
 	{
@@ -70,23 +60,17 @@
 		_user = nil;
 	}
 	
-#if DEBUG_PARSING
-	NSLog(@"user: dictionary end");
-#endif
+	MGTwitterLogParsing(@"user: dictionary end");
 }
 
 - (void)startArrayWithKey:(NSString *)key
 {
-#if DEBUG_PARSING
-	NSLog(@"user: array start = %@", key);
-#endif
+	MGTwitterLogParsing(@"user: array start = %@", key);
 }
 
 - (void)endArray
 {
-#if DEBUG_PARSING
-	NSLog(@"user: array end");
-#endif
+	MGTwitterLogParsing(@"user: array end");
 }
 
 - (void)dealloc

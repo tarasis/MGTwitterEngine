@@ -8,10 +8,6 @@
 
 #import "MGTwitterMessagesYAJLParser.h"
 
-#ifndef DEBUG_PARSING
-#define DEBUG_PARSING 0
-#endif
-
 @implementation MGTwitterMessagesYAJLParser
 
 - (void)addValue:(id)value forKey:(NSString *)key
@@ -19,31 +15,23 @@
 	if (_sender)
 	{
 		[_sender setObject:value forKey:key];
-#if DEBUG_PARSING
-		NSLog(@"messages:   sender: %@ = %@ (%@)", key, value, NSStringFromClass([value class]));
-#endif
+		MGTwitterLogParsing(@"messages:   sender: %@ = %@ (%@)", key, value, NSStringFromClass([value class]));
 	}
 	else if (_recipient)
 	{
 		[_recipient setObject:value forKey:key];
-#if DEBUG_PARSING
-		NSLog(@"messages:   recipient: %@ = %@ (%@)", key, value, NSStringFromClass([value class]));
-#endif
+		MGTwitterLogParsing(@"messages:   recipient: %@ = %@ (%@)", key, value, NSStringFromClass([value class]));
 	}
 	else if (_status)
 	{
 		[_status setObject:value forKey:key];
-#if DEBUG_PARSING
-		NSLog(@"messages:   status: %@ = %@ (%@)", key, value, NSStringFromClass([value class]));
-#endif
+		MGTwitterLogParsing(@"messages:   status: %@ = %@ (%@)", key, value, NSStringFromClass([value class]));
 	}
 }
 
 - (void)startDictionaryWithKey:(NSString *)key
 {
-#if DEBUG_PARSING
-	NSLog(@"messages: dictionary start = %@", key);
-#endif
+	MGTwitterLogParsing(@"messages: dictionary start = %@", key);
 
 	if (! _status)
 	{
@@ -87,23 +75,17 @@
 		_status = nil;
 	}
 	
-#if DEBUG_PARSING
-	NSLog(@"messages: dictionary end");
-#endif
+	MGTwitterLogParsing(@"messages: dictionary end");
 }
 
 - (void)startArrayWithKey:(NSString *)key
 {
-#if DEBUG_PARSING
-	NSLog(@"messages: array start = %@", key);
-#endif
+	MGTwitterLogParsing(@"messages: array start = %@", key);
 }
 
 - (void)endArray
 {
-#if DEBUG_PARSING
-	NSLog(@"messages: array end");
-#endif
+	MGTwitterLogParsing(@"messages: array end");
 }
 
 - (void)dealloc

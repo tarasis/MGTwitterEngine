@@ -8,10 +8,6 @@
 
 #import "MGTwitterStatusesYAJLParser.h"
 
-#ifndef DEBUG_PARSING
-#define DEBUG_PARSING 0
-#endif
-
 @implementation MGTwitterStatusesYAJLParser
 
 - (void)addValue:(id)value forKey:(NSString *)key
@@ -30,16 +26,12 @@
 		[lastDictionary setObject:value forKey:key];
 	}
 	
-#if DEBUG_PARSING
-	NSLog(@"parsed item: %@ = %@ (%@)", key, value, NSStringFromClass([value class]));
-#endif
+	MGTwitterLogParsing(@"parsed item: %@ = %@ (%@)", key, value, NSStringFromClass([value class]));
 }
 
 - (void)startDictionaryWithKey:(NSString *)key
 {
-#if DEBUG_PARSING
-	NSLog(@"status: dictionary start = %@", key);
-#endif
+	MGTwitterLogParsing(@"status: dictionary start = %@", key);
 	
 	if (!_dictionaries) 
 	{
@@ -90,9 +82,7 @@
 		[_dictionaries removeLastObject];
 		[_dictionaryKeys removeLastObject];
 	}
-#if DEBUG_PARSING
-	NSLog(@"status: dictionary end");
-#endif
+	MGTwitterLogParsing(@"status: dictionary end");
 }
 
 - (void)startArrayWithKey:(NSString *)key
@@ -102,16 +92,12 @@
 	NSMutableArray *newArray = [NSMutableArray array];
 	[self addValue:newArray forKey:key];
 	
-#if DEBUG_PARSING
-	NSLog(@"status: array start = %@", key);
-#endif
+	MGTwitterLogParsing(@"status: array start = %@", key);
 }
 
 - (void)endArray
 {
-#if DEBUG_PARSING
-	NSLog(@"status: array end");
-#endif
+	MGTwitterLogParsing(@"status: array end");
 
 	arrayDepth--;
 	[self clearCurrentKey];

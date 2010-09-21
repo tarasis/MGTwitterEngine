@@ -8,10 +8,6 @@
 
 #import "MGTwitterMiscYAJLParser.h"
 
-#ifndef DEBUG_PARSING
-#define DEBUG_PARSING 0
-#endif
-
 @implementation MGTwitterMiscYAJLParser
 
 - (void)addValue:(id)value forKey:(NSString *)key
@@ -19,17 +15,13 @@
 	if (_results)
 	{
 		[_results setObject:value forKey:key];
-#if DEBUG_PARSING
-		NSLog(@"misc:   results: %@ = %@ (%@)", key, value, NSStringFromClass([value class]));
-#endif
+		MGTwitterLogParsing(@"misc:   results: %@ = %@ (%@)", key, value, NSStringFromClass([value class]));
 	}
 }
 
 - (void)startDictionaryWithKey:(NSString *)key
 {
-#if DEBUG_PARSING
-	NSLog(@"misc: dictionary start = %@", key);
-#endif
+	MGTwitterLogParsing(@"misc: dictionary start = %@", key);
 
 	if (! _results)
 	{
@@ -50,23 +42,17 @@
 	[_results release];
 	_results = nil;
 	
-#if DEBUG_PARSING
-	NSLog(@"misc: dictionary end");
-#endif
+	MGTwitterLogParsing(@"misc: dictionary end");
 }
 
 - (void)startArrayWithKey:(NSString *)key
 {
-#if DEBUG_PARSING
-	NSLog(@"misc: array start = %@", key);
-#endif
+	MGTwitterLogParsing(@"misc: array start = %@", key);
 }
 
 - (void)endArray
 {
-#if DEBUG_PARSING
-	NSLog(@"misc: array end");
-#endif
+	MGTwitterLogParsing(@"misc: array end");
 }
 
 - (void)dealloc

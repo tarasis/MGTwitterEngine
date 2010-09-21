@@ -8,10 +8,6 @@
 
 #import "MGTwitterSearchYAJLParser.h"
 
-#ifndef DEBUG_PARSING
-#define DEBUG_PARSING 0
-#endif
-
 @implementation MGTwitterSearchYAJLParser
 
 - (void)addValue:(id)value forKey:(NSString *)key
@@ -27,9 +23,7 @@
 		NSMutableDictionary *lastDictionary = [_dictionaries lastObject];
 		[lastDictionary setObject:value forKey:key];
 		
-#if DEBUG_PARSING
-		NSLog(@"search:   results: %@ = %@ (%@)", key, value, NSStringFromClass([value class]));
-#endif
+		MGTwitterLogParsing(@"search:   results: %@ = %@ (%@)", key, value, NSStringFromClass([value class]));
 	}
 	else
 	{
@@ -37,17 +31,13 @@
 		{
 			[_status setObject:value forKey:key];
 		}
-#if DEBUG_PARSING
-		NSLog(@"search:   status: %@ = %@ (%@)", key, value, NSStringFromClass([value class]));
-#endif
+		MGTwitterLogParsing(@"search:   status: %@ = %@ (%@)", key, value, NSStringFromClass([value class]));
 	}
 }
 
 - (void)startDictionaryWithKey:(NSString *)key
 {
-#if DEBUG_PARSING
-	NSLog(@"search: dictionary start = %@", key);
-#endif
+	MGTwitterLogParsing(@"search: dictionary start = %@", key);
 	if (insideArray)
 	{
 		if (!_dictionaries) 
@@ -122,24 +112,18 @@
 		}
 	}
 	
-#if DEBUG_PARSING
-	NSLog(@"search: dictionary end");
-#endif
+	MGTwitterLogParsing(@"search: dictionary end");
 }
 
 - (void)startArrayWithKey:(NSString *)key
 {
-#if DEBUG_PARSING
-	NSLog(@"search: array start = %@", key);
-#endif
+	MGTwitterLogParsing(@"search: array start = %@", key);
 	insideArray = YES;
 }
 
 - (void)endArray
 {
-#if DEBUG_PARSING
-	NSLog(@"search: array end");
-#endif
+	MGTwitterLogParsing(@"search: array end");
 	insideArray = NO;
 }
 
