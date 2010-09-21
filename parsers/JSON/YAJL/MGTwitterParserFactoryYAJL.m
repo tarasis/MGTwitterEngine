@@ -12,6 +12,7 @@
 #import "MGTwitterUsersYAJLParser.h"
 #import "MGTwitterMiscYAJLParser.h"
 #import "MGTwitterSearchYAJLParser.h"
+#import "MGTwitterLogging.h"
 
 #import "OAuthConsumer.h"
 

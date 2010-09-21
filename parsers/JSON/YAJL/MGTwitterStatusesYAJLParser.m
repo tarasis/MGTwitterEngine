@@ -7,6 +7,7 @@
 //
 
 #import "MGTwitterStatusesYAJLParser.h"
+#import "MGTwitterLogging.h"
 
 @implementation MGTwitterStatusesYAJLParser
 
