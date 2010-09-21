@@ -204,6 +204,11 @@
 		22483F471249107B000F2F14 /* MGTwitterSearchYAJLGenericParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 22483A2A1248EDF5000F2F14 /* MGTwitterSearchYAJLGenericParser.m */; };
 		22483F481249107C000F2F14 /* MGTwitterYAJLGenericParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 22483A2C1248EDF5000F2F14 /* MGTwitterYAJLGenericParser.m */; };
 		22483F5312491125000F2F14 /* MGTwitterParserFactoryJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 22483A0F1248EDF5000F2F14 /* MGTwitterParserFactoryJSON.m */; };
+		22483FD6124923AB000F2F14 /* Twitter Details.plist in Resources */ = {isa = PBXBuildFile; fileRef = 22483FD5124923AB000F2F14 /* Twitter Details.plist */; };
+		22483FD7124923AB000F2F14 /* Twitter Details.plist in Resources */ = {isa = PBXBuildFile; fileRef = 22483FD5124923AB000F2F14 /* Twitter Details.plist */; };
+		22483FD8124923AB000F2F14 /* Twitter Details.plist in Resources */ = {isa = PBXBuildFile; fileRef = 22483FD5124923AB000F2F14 /* Twitter Details.plist */; };
+		22483FD9124923AB000F2F14 /* Twitter Details.plist in Resources */ = {isa = PBXBuildFile; fileRef = 22483FD5124923AB000F2F14 /* Twitter Details.plist */; };
+		22483FDA124923AB000F2F14 /* Twitter Details.plist in Resources */ = {isa = PBXBuildFile; fileRef = 22483FD5124923AB000F2F14 /* Twitter Details.plist */; };
 		44F751A70E47DEC400858A1B /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 44F751A50E47DEC400858A1B /* NSData+Base64.m */; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		C9811E640D5F69B500720D77 /* MGTwitterEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = C9811E630D5F69B500720D77 /* MGTwitterEngine.m */; };
@@ -367,6 +372,7 @@
 		22483F1B12490EEC000F2F14 /* PrefixWithYAJLGeneric.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixWithYAJLGeneric.pch; sourceTree = "<group>"; };
 		22483F1F12490F15000F2F14 /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = English; path = examples/English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		22483F2112490F15000F2F14 /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = examples/English.lproj/MainMenu.nib; sourceTree = "<group>"; };
+		22483FD5124923AB000F2F14 /* Twitter Details.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Twitter Details.plist"; sourceTree = "<group>"; };
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		44F7517B0E47DBD600858A1B /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = /usr/lib/libxml2.dylib; sourceTree = "<absolute>"; };
@@ -816,6 +822,7 @@
 				22483EF612490DFB000F2F14 /* AppController.h */,
 				22483EF712490DFB000F2F14 /* AppController.m */,
 				22483EFD12490DFB000F2F14 /* Info.plist */,
+				22483FD5124923AB000F2F14 /* Twitter Details.plist */,
 				22483EFE12490DFB000F2F14 /* main.m */,
 				22483F1612490EEC000F2F14 /* Prefixes */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
@@ -970,6 +977,7 @@
 				22483F0312490DFB000F2F14 /* Info.plist in Resources */,
 				22483F2412490F15000F2F14 /* InfoPlist.strings in Resources */,
 				22483F2512490F15000F2F14 /* MainMenu.nib in Resources */,
+				22483FD7124923AB000F2F14 /* Twitter Details.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -980,6 +988,7 @@
 				22483F0612490DFB000F2F14 /* Info.plist in Resources */,
 				22483F2612490F15000F2F14 /* InfoPlist.strings in Resources */,
 				22483F2712490F15000F2F14 /* MainMenu.nib in Resources */,
+				22483FD8124923AB000F2F14 /* Twitter Details.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -990,6 +999,7 @@
 				22483F0912490DFB000F2F14 /* Info.plist in Resources */,
 				22483F2812490F15000F2F14 /* InfoPlist.strings in Resources */,
 				22483F2912490F15000F2F14 /* MainMenu.nib in Resources */,
+				22483FD9124923AB000F2F14 /* Twitter Details.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1000,6 +1010,7 @@
 				22483F0C12490DFB000F2F14 /* Info.plist in Resources */,
 				22483F2A12490F15000F2F14 /* InfoPlist.strings in Resources */,
 				22483F2B12490F15000F2F14 /* MainMenu.nib in Resources */,
+				22483FDA124923AB000F2F14 /* Twitter Details.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1010,6 +1021,7 @@
 				22483F0012490DFB000F2F14 /* Info.plist in Resources */,
 				22483F2212490F15000F2F14 /* InfoPlist.strings in Resources */,
 				22483F2312490F15000F2F14 /* MainMenu.nib in Resources */,
+				22483FD6124923AB000F2F14 /* Twitter Details.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
