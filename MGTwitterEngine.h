@@ -262,6 +262,8 @@
 
 @end
 
-@interface MGTwitterEngine (Geo)
-- (NSString *) getGeoSearchAt: (CLLocation*) location;
+@interface MGTwitterEngine (Generic)
+
+- (NSString *) genericRequestWithMethod:(NSString *)method path:(NSString *)path queryParameters:(NSDictionary *)params body:(NSString *)body;
+
 @end

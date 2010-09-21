@@ -746,9 +746,9 @@
 				[_delegate accessTokenReceived:[parsedObjects objectAtIndex:0]
 									forRequest:identifier];
 			break;
-		case MGTwitterGeoSearchResults:
-			if ([self _isValidDelegateForSelector:@selector(geoSearchResultsReceived:forRequest:)] && [parsedObjects count] > 0)
-				[_delegate geoSearchResultsReceived:[parsedObjects objectAtIndex:0]
+		case MGTwitterGenericParsed:
+			if ([self _isValidDelegateForSelector:@selector(genericResultsReceived:forRequest:)] && [parsedObjects count] > 0)
+				[_delegate genericResultsReceived:[parsedObjects objectAtIndex:0]
 									forRequest:identifier];
 			break;
         default:
@@ -798,7 +798,7 @@
     [connection setResponse:resp];
     NSInteger statusCode = [resp statusCode];
     
-    if (statusCode == 304 || [connection responseType] == MGTwitterGeneric) {
+    if (statusCode == 304 || [connection responseType] == MGTwitterGenericUnparsed) {
         // Not modified, or generic success.
 		if ([self _isValidDelegateForSelector:@selector(requestSucceeded:)])
 			[_delegate requestSucceeded:[connection identifier]];
@@ -1503,7 +1503,7 @@
     
     return [self _sendRequestWithMethod:nil path:path queryParameters:nil body:nil 
                             requestType:MGTwitterAccountRequest 
-                           responseType:MGTwitterGeneric];
+                           responseType:MGTwitterGenericUnparsed];
 }
 
 
@@ -1517,7 +1517,7 @@
                                    filePath:pathToFile
                                        body:nil 
                                 requestType:MGTwitterAccountRequest 
-                               responseType:MGTwitterGeneric];
+                               responseType:MGTwitterGenericUnparsed];
 }
 
 
@@ -1538,7 +1538,7 @@
                                    filePath:pathToFile
                                        body:nil 
                                 requestType:MGTwitterAccountRequest 
-                               responseType:MGTwitterGeneric];
+                               responseType:MGTwitterGenericUnparsed];
 }
 
 #pragma mark -
@@ -1782,22 +1782,18 @@
 
 
 #pragma mark -
-#pragma mark Geo API methods
+#pragma mark Generic API methods
 #pragma mark -
 
-- (NSString *) getGeoSearchAt: (CLLocation*) location
+- (NSString *) genericRequestWithMethod:(NSString *)method 
+                                path:(NSString *)path 
+                     queryParameters:(NSDictionary *)params
+                                body:(NSString *)body 
 {
-	NSString *path = [NSString stringWithFormat:@"geo/search.%@", _APIFormat];
-
-	NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:0];
-	
-	CLLocationCoordinate2D coords = location.coordinate;
-	[params setObject:[NSString stringWithFormat: @"%lf", coords.latitude] forKey:@"lat"];
-	[params setObject:[NSString stringWithFormat: @"%lf", coords.longitude] forKey:@"long"];
-	
-    return [self _sendRequestWithMethod:nil path:path queryParameters:params body:nil 
-                            requestType:MGTwitterGeoSearchRequest 
-                           responseType:MGTwitterGeoSearchResults];	
+	NSString *fullPath = [NSString stringWithFormat:@"%@.%@", path, _APIFormat];
+    return [self _sendRequestWithMethod:method path:fullPath queryParameters:params body:body 
+                            requestType:MGTwitterGenericRequest 
+                           responseType:MGTwitterGenericParsed];	
 }
 
 #pragma mark -

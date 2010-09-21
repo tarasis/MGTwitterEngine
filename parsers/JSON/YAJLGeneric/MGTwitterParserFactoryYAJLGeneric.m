@@ -17,17 +17,6 @@
 - (void) parseData: (NSData*) data URL: (NSURL*) URL identifier: (NSString*) identifier requestType: (MGTwitterRequestType) requestType responseType: (MGTwitterResponseType) responseType engine: (MGTwitterEngine*) engine
 {
     switch (responseType) {
-		case MGTwitterStatuses:
-		case MGTwitterStatus:
-		case MGTwitterUsers:
-		case MGTwitterUser:
-		case MGTwitterDirectMessages:
-		case MGTwitterDirectMessage:
-		case MGTwitterSocialGraph:
-            [MGTwitterYAJLGenericParser parserWithJSON:data delegate:engine 
-						   connectionIdentifier:identifier requestType:requestType 
-								   responseType:responseType URL:URL deliveryOptions:_deliveryOptions];
-            break;
 		case MGTwitterMiscellaneous:
 			[MGTwitterMiscYAJLGenericParser parserWithJSON:data delegate:engine 
 							   connectionIdentifier:identifier requestType:requestType 
@@ -39,6 +28,9 @@
 										 responseType:responseType URL:URL deliveryOptions:_deliveryOptions];
 			break;
 		default:
+            [MGTwitterYAJLGenericParser parserWithJSON:data delegate:engine 
+								  connectionIdentifier:identifier requestType:requestType 
+										  responseType:responseType URL:URL deliveryOptions:_deliveryOptions];
             break;
 	}
 }
