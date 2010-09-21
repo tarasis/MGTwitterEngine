@@ -22,29 +22,29 @@
 	switch (responseType) {
 		case MGTwitterStatuses:
 		case MGTwitterStatus:
-			[MGTwitterStatusesYAJLParser parserWithJSON:data delegate:self 
+			[MGTwitterStatusesYAJLParser parserWithJSON:data delegate:engine 
 								   connectionIdentifier:identifier requestType:requestType 
 										   responseType:responseType URL:URL deliveryOptions:deliveryOptions];
 			break;
 		case MGTwitterUsers:
 		case MGTwitterUser:
-			[MGTwitterUsersYAJLParser parserWithJSON:data delegate:self 
+			[MGTwitterUsersYAJLParser parserWithJSON:data delegate:engine 
 								connectionIdentifier:identifier requestType:requestType 
 										responseType:responseType URL:URL deliveryOptions:deliveryOptions];
 			break;
 		case MGTwitterDirectMessages:
 		case MGTwitterDirectMessage:
-			[MGTwitterMessagesYAJLParser parserWithJSON:data delegate:self 
+			[MGTwitterMessagesYAJLParser parserWithJSON:data delegate:engine 
 								   connectionIdentifier:identifier requestType:requestType 
 										   responseType:responseType URL:URL deliveryOptions:deliveryOptions];
 			break;
 		case MGTwitterMiscellaneous:
-			[MGTwitterMiscYAJLParser parserWithJSON:data delegate:self 
+			[MGTwitterMiscYAJLParser parserWithJSON:data delegate:engine 
 							   connectionIdentifier:identifier requestType:requestType 
 									   responseType:responseType URL:URL deliveryOptions:deliveryOptions];
 			break;
 		case MGTwitterSearchResults:
-			[MGTwitterSearchYAJLParser parserWithJSON:data delegate:self 
+			[MGTwitterSearchYAJLParser parserWithJSON:data delegate:engine 
 								 connectionIdentifier:identifier requestType:requestType 
 										 responseType:responseType URL:URL deliveryOptions:deliveryOptions];
 			break;
