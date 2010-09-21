@@ -212,9 +212,9 @@
     [[image TIFFRepresentation] writeToFile:path atomically:NO];
 }
 																   
-- (void)genericResultsReceived:(NSArray*)searchResults forRequest:(NSString *)connectionIdentifier
+- (void)genericResultsReceived:(NSArray*)genericResults forRequest:(NSString *)connectionIdentifier
 {
-    NSLog(@"genericResultsReceived: %@ %@", searchResults, connectionIdentifier);	
+    NSLog(@"genericResultsReceived: %@ %@", genericResults, connectionIdentifier);
 }
 
 - (void)connectionFinished:(NSString *)connectionIdentifier
