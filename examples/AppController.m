@@ -125,13 +125,18 @@
 	//NSLog(@"getFriendIDsFor: connectionIdentifier = %@", [twitterEngine getFriendIDsFor:TESTING_SECONDARY_USER startingFromCursor:-1]);
 	//NSLog(@"getFollowerIDsFor: connectionIdentifier = %@", [twitterEngine getFollowerIDsFor:TESTING_SECONDARY_USER startingFromCursor:-1]);
 
-#if YAJL_AVAILABLE || TOUCHJSON_AVAILABLE
 	// Search method
 	//NSLog(@"getSearchResultsForQuery: connectionIdentifier = %@", [twitterEngine getSearchResultsForQuery:TESTING_PRIMARY_USER sinceID:0 startingAtPage:1 count:20]);
 	
 	// Trends method
 	//NSLog(@"getTrends: connectionIdentifier = %@", [twitterEngine getTrends]);
-#endif
+	
+	//Generic Request
+	//NSLog(@"genericRequestWithMethod: connectionIdentifier = %@", [twitterEngine genericRequestWithMethod:nil 
+	//																								 path:@"followers/ids" 
+	//																					  queryParameters: [NSDictionary dictionaryWithObjectsAndKeys:@"-1", @"cursor", nil]
+	//																								 body:nil]);
+	
 }
 
 - (void)dealloc
@@ -208,6 +213,11 @@
     [[image TIFFRepresentation] writeToFile:path atomically:NO];
 }
 
+- (void)genericResultsReceived:(NSArray*)searchResults forRequest:(NSString *)connectionIdentifier
+{
+	NSLog(@"genericResultsReceived: %@ %@", searchResults, connectionIdentifier);	
+}
+
 - (void)connectionFinished:(NSString *)connectionIdentifier
 {
     NSLog(@"Connection finished %@", connectionIdentifier);
@@ -226,13 +236,9 @@
 	[self runTests];
 }
 
-#if YAJL_AVAILABLE || TOUCHJSON_AVAILABLE
-
 - (void)receivedObject:(NSDictionary *)dictionary forRequest:(NSString *)connectionIdentifier
 {
     NSLog(@"Got an object for %@: %@", connectionIdentifier, dictionary);
 }
-
-#endif
 
 @end
