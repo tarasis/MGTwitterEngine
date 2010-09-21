@@ -7,6 +7,7 @@
 //
 
 #import "AppController.h"
+#import "MGTwitterParserFactoryNSXML.h"
 
 @implementation AppController
 
@@ -27,7 +28,10 @@
     }
     
     // Create a TwitterEngine and set our login details.
-    twitterEngine = [[MGTwitterEngine alloc] initWithDelegate:self];
+	MGTwitterParserFactory* parser = [[MGTwitterParserFactoryNSXML alloc] init];
+    twitterEngine = [[MGTwitterEngine alloc] initWithDelegate:self parser: parser];
+	[parser release];
+	
 	[twitterEngine setUsesSecureConnection:NO];
 	[twitterEngine setConsumerKey:consumerKey secret:consumerSecret];
 	// This has been undepreciated for the purposes of dealing with Lists.
