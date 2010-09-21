@@ -128,6 +128,12 @@
 	// Trends method
 	//NSLog(@"getTrends: connectionIdentifier = %@", [twitterEngine getTrends]);
 #endif
+	
+	//Generic Request
+	//NSLog(@"genericRequestWithMethod: connectionIdentifier = %@", [twitterEngine genericRequestWithMethod:nil 
+	//																								 path:@"followers/ids" 
+	//																					  queryParameters: [NSDictionary dictionaryWithObjectsAndKeys:@"-1", @"cursor", nil]
+	//																								 body:nil]);
 }
 
 - (void)dealloc
@@ -202,6 +208,11 @@
     // Save image to the Desktop.
     NSString *path = [[NSString stringWithFormat:@"~/Desktop/%@.tiff", connectionIdentifier] stringByExpandingTildeInPath];
     [[image TIFFRepresentation] writeToFile:path atomically:NO];
+}
+																   
+- (void)genericResultsReceived:(NSArray*)searchResults forRequest:(NSString *)connectionIdentifier
+{
+    NSLog(@"genericResultsReceived: %@ %@", searchResults, connectionIdentifier);	
 }
 
 - (void)connectionFinished:(NSString *)connectionIdentifier
