@@ -69,7 +69,6 @@
 		22483E1412490A41000F2F14 /* CJSONSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 22483CBF1248FE5F000F2F14 /* CJSONSerializer.m */; };
 		22483E1512490A41000F2F14 /* CSerializedJSONData.m in Sources */ = {isa = PBXBuildFile; fileRef = 22483CC11248FE5F000F2F14 /* CSerializedJSONData.m */; };
 		22483E1A12490A41000F2F14 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
-		22483E1B12490A41000F2F14 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 44F7517B0E47DBD600858A1B /* libxml2.dylib */; };
 		22483E1C12490A41000F2F14 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E4C01DF1186A5260092F9AD /* Security.framework */; };
 		22483E4312490CE2000F2F14 /* MGTwitterEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = C9811E630D5F69B500720D77 /* MGTwitterEngine.m */; };
 		22483E4412490CE2000F2F14 /* MGTwitterHTTPURLConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = C9AE949B0D678D4400ADEBEC /* MGTwitterHTTPURLConnection.m */; };
@@ -141,7 +140,6 @@
 		22483EA012490CE6000F2F14 /* CSerializedJSONData.m in Sources */ = {isa = PBXBuildFile; fileRef = 22483CC11248FE5F000F2F14 /* CSerializedJSONData.m */; };
 		22483EA112490CE6000F2F14 /* MGTwitterParserFactoryJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 22483A0F1248EDF5000F2F14 /* MGTwitterParserFactoryJSON.m */; };
 		22483EA512490CE6000F2F14 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
-		22483EA612490CE6000F2F14 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 44F7517B0E47DBD600858A1B /* libxml2.dylib */; };
 		22483EA712490CE6000F2F14 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E4C01DF1186A5260092F9AD /* Security.framework */; };
 		22483EBB12490D66000F2F14 /* MGTwitterEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = C9811E630D5F69B500720D77 /* MGTwitterEngine.m */; };
 		22483EBC12490D66000F2F14 /* MGTwitterHTTPURLConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = C9AE949B0D678D4400ADEBEC /* MGTwitterHTTPURLConnection.m */; };
@@ -173,7 +171,6 @@
 		22483EDF12490D66000F2F14 /* CSerializedJSONData.m in Sources */ = {isa = PBXBuildFile; fileRef = 22483CC11248FE5F000F2F14 /* CSerializedJSONData.m */; };
 		22483EE012490D66000F2F14 /* MGTwitterParserFactoryJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 22483A0F1248EDF5000F2F14 /* MGTwitterParserFactoryJSON.m */; };
 		22483EE412490D66000F2F14 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
-		22483EE512490D66000F2F14 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 44F7517B0E47DBD600858A1B /* libxml2.dylib */; };
 		22483EE612490D66000F2F14 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E4C01DF1186A5260092F9AD /* Security.framework */; };
 		22483EFF12490DFB000F2F14 /* AppController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22483EF712490DFB000F2F14 /* AppController.m */; };
 		22483F0012490DFB000F2F14 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 22483EFD12490DFB000F2F14 /* Info.plist */; };
@@ -221,7 +218,6 @@
 		22483F471249107B000F2F14 /* MGTwitterSearchYAJLGenericParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 22483A2A1248EDF5000F2F14 /* MGTwitterSearchYAJLGenericParser.m */; };
 		22483F481249107C000F2F14 /* MGTwitterYAJLGenericParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 22483A2C1248EDF5000F2F14 /* MGTwitterYAJLGenericParser.m */; };
 		22483F5312491125000F2F14 /* MGTwitterParserFactoryJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 22483A0F1248EDF5000F2F14 /* MGTwitterParserFactoryJSON.m */; };
-		44F7517C0E47DBD600858A1B /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 44F7517B0E47DBD600858A1B /* libxml2.dylib */; };
 		44F751A70E47DEC400858A1B /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 44F751A50E47DEC400858A1B /* NSData+Base64.m */; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		C9811E640D5F69B500720D77 /* MGTwitterEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = C9811E630D5F69B500720D77 /* MGTwitterEngine.m */; };
@@ -412,7 +408,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				22483E1A12490A41000F2F14 /* Cocoa.framework in Frameworks */,
-				22483E1B12490A41000F2F14 /* libxml2.dylib in Frameworks */,
 				22483E1C12490A41000F2F14 /* Security.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -432,7 +427,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				22483EA512490CE6000F2F14 /* Cocoa.framework in Frameworks */,
-				22483EA612490CE6000F2F14 /* libxml2.dylib in Frameworks */,
 				22483EA712490CE6000F2F14 /* Security.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -442,7 +436,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				22483EE412490D66000F2F14 /* Cocoa.framework in Frameworks */,
-				22483EE512490D66000F2F14 /* libxml2.dylib in Frameworks */,
 				22483EE612490D66000F2F14 /* Security.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -452,7 +445,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
-				44F7517C0E47DBD600858A1B /* libxml2.dylib in Frameworks */,
 				1E4C01E01186A5260092F9AD /* Security.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
