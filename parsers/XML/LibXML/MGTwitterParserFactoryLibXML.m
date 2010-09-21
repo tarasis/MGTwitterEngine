@@ -16,6 +16,11 @@
 
 @implementation MGTwitterParserFactoryLibXML
 
+- (NSString*) APIFormat
+{
+	return @"xml";
+}
+
 - (void) parseData: (NSData*) data URL: (NSURL*) URL identifier: (NSString*) identifier requestType: (MGTwitterRequestType) requestType responseType: (MGTwitterResponseType) responseType engine: (MGTwitterEngine*) engine
 {
 switch (responseType) {
