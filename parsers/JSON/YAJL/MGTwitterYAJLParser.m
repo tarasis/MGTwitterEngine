@@ -12,6 +12,17 @@
 
 #pragma mark Callbacks
 
+// prototypes
+int MGTwitterYAJLParser_processNull(void *ctx);
+int MGTwitterYAJLParser_processBoolean(void * ctx, int boolVal);
+int MGTwitterYAJLParser_processNumber(void *ctx, const char *numberVal, unsigned int numberLen);
+int MGTwitterYAJLParser_processString(void *ctx, const unsigned char * stringVal, unsigned int stringLen);
+int MGTwitterYAJLParser_processMapKey(void *ctx, const unsigned char * stringVal, unsigned int stringLen);
+int MGTwitterYAJLParser_processStartMap(void *ctx);
+int MGTwitterYAJLParser_processEndMap(void *ctx);
+int MGTwitterYAJLParser_processStartArray(void *ctx);
+int MGTwitterYAJLParser_processEndArray(void *ctx);
+
 static NSString *currentKey;
 
 int MGTwitterYAJLParser_processNull(void *ctx)
