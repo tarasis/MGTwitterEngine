@@ -13,16 +13,16 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
-    // Put your Twitter username and password here:
-    NSString *username = nil;
-    NSString *password = nil;
+    // Put your Twitter details into the resource file "Twitter Details.plist"
+	NSDictionary* twitterDetails = [NSDictionary dictionaryWithContentsOfFile: [[NSBundle mainBundle] pathForResource: @"Twitter Details" ofType: @"plist"]];
+    NSString *username = [twitterDetails objectForKey: @"username"];
+    NSString *password = [twitterDetails objectForKey: @"password"];
+	NSString *consumerKey = [twitterDetails objectForKey: @"consumer key"];
+	NSString *consumerSecret = [twitterDetails objectForKey: @"consumer secret"];
 	
-	NSString *consumerKey = nil;
-	NSString *consumerSecret = nil;
-	
-    // Most API calls require a name and password to be set...
-    if (! username || ! password || !consumerKey || !consumerSecret) {
-        NSLog(@"You forgot to specify your username/password/key/secret in AppController.m, things might not work!");
+    // Most API calls require the user name, password and oauth details to be set
+    if (! [username length] || ! [password length] || ![consumerKey length] || ![consumerSecret length]) {
+        NSLog(@"You forgot to specify your username/password/key/secret in Twitter Details.plist, things might not work!");
 		NSLog(@"And if things are mysteriously working without the username/password, it's because NSURLConnection is using a session cookie from another connection.");
     }
 
@@ -45,7 +45,7 @@
 	[twitterEngine getXAuthAccessTokenForUsername:username password:password];
 }
 
--(void)runTests{
+-(void)runTests {
 	[twitterEngine setAccessToken:token];
 	
 	// Configure how the delegate methods are called to deliver results. See MGTwitterEngineDelegate.h for more info
