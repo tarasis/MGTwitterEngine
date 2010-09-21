@@ -7,7 +7,7 @@
 //
 
 #import "AppController.h"
-#import "MGTwitterParserFactoryNSXML.h"
+#import "MGTwitterParserFactoryTouchJSON.h"
 
 @implementation AppController
 
@@ -28,7 +28,7 @@
     }
     
     // Create a TwitterEngine and set our login details.
-	MGTwitterParserFactory* parser = [[MGTwitterParserFactoryNSXML alloc] init];
+	MGTwitterParserFactory* parser = [[MGTwitterParserFactoryTouchJSON alloc] init];
     twitterEngine = [[MGTwitterEngine alloc] initWithDelegate:self parser: parser];
 	[parser release];
 	
