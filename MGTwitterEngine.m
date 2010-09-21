@@ -12,11 +12,6 @@
 
 #import "NSData+Base64.h"
 
-#ifndef USE_LIBXML
-//  if you wish to use LibXML, add USE_LIBXML=1 to "Precompiler Macros" in Project Info for all targets
-#   define USE_LIBXML 0
-#endif
-
 #if YAJL_AVAILABLE
 	#import "MGTwitterParserFactoryYAJL.h"
 
@@ -27,14 +22,11 @@
 	#import "MGTwitterParserFactoryLibXML.h"
 	
 #else
-	#import "MGTwitterParserFactoryBasicXML.h"
+	#import "MGTwitterParserFactoryNSXML.h"
 #endif
 
 #define TWITTER_DOMAIN          @"api.twitter.com/1"
-
-#if YAJL_AVAILABLE || TOUCHJSON_AVAILABLE
-	#define TWITTER_SEARCH_DOMAIN	@"search.twitter.com"
-#endif
+#define TWITTER_SEARCH_DOMAIN	@"search.twitter.com"
 #define HTTP_POST_METHOD        @"POST"
 #define MAX_MESSAGE_LENGTH      140 // Twitter recommends tweets of max 140 chars
 #define MAX_NAME_LENGTH			20
@@ -135,15 +127,11 @@
         _clientURL = [DEFAULT_CLIENT_URL retain];
 		_clientSourceToken = [DEFAULT_CLIENT_TOKEN retain];
 		_APIDomain = [TWITTER_DOMAIN retain];
-#if YAJL_AVAILABLE || TOUCHJSON_AVAILABLE
 		_searchDomain = [TWITTER_SEARCH_DOMAIN retain];
-#endif
 
         _secureConnection = YES;
 		_clearsCookies = NO;
-#if YAJL_AVAILABLE || TOUCHJSON_AVAILABLE
 		_deliveryOptions = MGTwitterEngineDeliveryAllResultsOption;
-#endif
 		
 #if YAJL_AVAILABLE
 		_parser = [[MGTwitterParserFactoryYAJL alloc] init];
@@ -269,6 +257,18 @@
 	} else {
 		_searchDomain = [domain retain];
 	}
+}
+
+- (MGTwitterParserFactory *) parser
+{
+	return [[_parser retain] autorelease];
+}
+
+
+- (void)setParser:(MGTwitterParserFactory *)parser
+{
+	[_parser release];
+	_parser = [parser retain];
 }
 
 
@@ -729,12 +729,10 @@
 			if ([self _isValidDelegateForSelector:@selector(miscInfoReceived:forRequest:)])
 				[_delegate miscInfoReceived:parsedObjects forRequest:identifier];
 			break;
-#if YAJL_AVAILABLE || TOUCHJSON_AVAILABLE
 		case MGTwitterSearchResults:
 			if ([self _isValidDelegateForSelector:@selector(searchResultsReceived:forRequest:)])
 				[_delegate searchResultsReceived:parsedObjects forRequest:identifier];
 			break;
-#endif
 		case MGTwitterSocialGraph:
 			if ([self _isValidDelegateForSelector:@selector(socialGraphInfoReceived:forRequest:)])
 				[_delegate socialGraphInfoReceived: parsedObjects forRequest:identifier];
@@ -766,16 +764,12 @@
 		[_delegate requestFailed:requestIdentifier withError:error];
 }
 
-#if YAJL_AVAILABLE || TOUCHJSON_AVAILABLE
-
 - (void)parsedObject:(NSDictionary *)dictionary forRequest:(NSString *)requestIdentifier 
                  ofResponseType:(MGTwitterResponseType)responseType
 {
 	if ([self _isValidDelegateForSelector:@selector(receivedObject:forRequest:)])
 		[_delegate receivedObject:dictionary forRequest:requestIdentifier];
 }
-
-#endif
 
 
 #pragma mark NSURLConnection delegate methods
@@ -1795,8 +1789,6 @@
 }
 
 
-#if YAJL_AVAILABLE || TOUCHJSON_AVAILABLE
-
 #pragma mark -
 #pragma mark Geo API methods
 #pragma mark -
@@ -1815,10 +1807,6 @@
                             requestType:MGTwitterGeoSearchRequest 
                            responseType:MGTwitterGeoSearchResults];	
 }
-
-#endif
-
-#if YAJL_AVAILABLE || TOUCHJSON_AVAILABLE
 
 #pragma mark -
 #pragma mark Search API methods
@@ -1892,8 +1880,6 @@
                            responseType:MGTwitterSearchResults];
 }
 
-
-#endif
 
 @end
 

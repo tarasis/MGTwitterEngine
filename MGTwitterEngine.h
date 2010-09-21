@@ -13,13 +13,13 @@
 
 #import "OAToken.h"
 
-@class MGTwitterEngineParserFactory;
+@class MGTwitterParserFactory;
 
 @interface MGTwitterEngine : NSObject <MGTwitterParserDelegate>
 {
     __weak NSObject <MGTwitterEngineDelegate> *_delegate;
     NSMutableDictionary *_connections;   // MGTwitterHTTPURLConnection objects
-	MGTwitterEngineParserFactory *_parser;
+	MGTwitterParserFactory *_parser;
     NSString *_clientName;
     NSString *_clientVersion;
     NSString *_clientURL;
@@ -64,6 +64,8 @@
 - (void)setClearsCookies:(BOOL)flag;
 - (MGTwitterEngineDeliveryOptions)deliveryOptions;
 - (void)setDeliveryOptions:(MGTwitterEngineDeliveryOptions)deliveryOptions;
+- (MGTwitterParserFactory*) parser;
+- (void) setParser: (MGTwitterParserFactory*) parser;
 
 // Connection methods
 - (NSUInteger)numberOfConnections;
@@ -77,10 +79,6 @@
 // As with the Twitter API methods below, it returns a unique connection identifier.
 // Retrieved images are sent to the delegate via the -imageReceived:forRequest: method.
 - (NSString *)getImageAtURL:(NSString *)urlString;
-
-- (void)parsingSucceededForRequest:(NSString *)identifier 
-                    ofResponseType:(MGTwitterResponseType)responseType 
-                 withParsedObjects:(NSArray *)parsedObjects;
 
 #pragma mark REST API methods
 
@@ -228,8 +226,6 @@
 // All methods below return a unique connection identifier.
 // ======================================================================================================
 
-#if YAJL_AVAILABLE || TOUCHJSON_AVAILABLE
-
 // Search method
 
 - (NSString *)getSearchResultsForQuery:(NSString *)query;
@@ -239,8 +235,6 @@
 // Trends method
 
 - (NSString *)getCurrentTrends; // current trends
-
-#endif
 
 @end
 

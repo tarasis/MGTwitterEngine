@@ -1,12 +1,11 @@
 //
-//  MGTwitterParserFactoryXML.m
-//  ici
+//  MGTwitterParserFactoryNSXML.m
 //
 //  Created by Sam Deane on 21/09/2010.
 //  Copyright 2010 Elegant Chaos. All rights reserved.
 //
 
-#import "MGTwitterParserFactoryBasicXML.h"
+#import "MGTwitterParserFactoryNSXML.h"
 #import "MGTwitterEngine.h"
 
 #import "MGTwitterStatusesParser.h"
@@ -16,7 +15,7 @@
 #import "MGTwitterSocialGraphParser.h"
 #import "MGTwitterUserListsParser.h"
 
-@implementation MGTwitterParserFactoryBasicXML
+@implementation MGTwitterParserFactoryNSXML
 
 - (NSString*) APIFormat
 {

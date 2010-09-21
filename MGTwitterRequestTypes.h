@@ -49,11 +49,9 @@ typedef enum _MGTwitterRequestType {
 	MGTwitterFollowerIDsRequest, // request the numeric IDs of the followers of the specified user
 	MGTwitterUserListsRequest,
 	MGTwitterUserListCreate,
-#if YAJL_AVAILABLE || TOUCHJSON_AVAILABLE
 	MGTwitterSearchRequest, // performing a search
 	MGTwitterSearchCurrentTrendsRequest, // getting the current trends
 	MGTwitterGeoSearchRequest,
-#endif
 	MGTwitterOAuthTokenRequest,
 } MGTwitterRequestType;
 
@@ -67,9 +65,7 @@ typedef enum _MGTwitterResponseType {
     MGTwitterGeneric            = 6,    // a generic response not requiring parsing
 	MGTwitterMiscellaneous		= 8,	// a miscellaneous response of key-value pairs
     MGTwitterImage              = 7,    // an image
-#if YAJL_AVAILABLE || TOUCHJSON_AVAILABLE
 	MGTwitterSearchResults		= 9,	// search results
-#endif
 	MGTwitterSocialGraph		= 10,
 	MGTwitterOAuthToken         = 11,
 	MGTwitterUserLists          = 12,
