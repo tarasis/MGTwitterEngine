@@ -961,7 +961,7 @@
     [params setObject:[NSString stringWithFormat:@"%d", count] forKey:@"count"];
   }
   
-  return [self _sendRequestWithMethod:HTTP_POST_METHOD path:path queryParameters:params body:nil 
+  return [self _sendRequestWithMethod:nil path:path queryParameters:params body:nil 
                           requestType:MGTwitterHomeTimelineRequest 
                          responseType:MGTwitterStatuses];
   
