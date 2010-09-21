@@ -46,6 +46,7 @@
 // Constructors
 + (MGTwitterEngine *)twitterEngineWithDelegate:(NSObject *)delegate;
 - (MGTwitterEngine *)initWithDelegate:(NSObject *)delegate;
+- (MGTwitterEngine *)initWithDelegate:(NSObject *)delegate parser:(MGTwitterParserFactory*) parser;
 
 // Configuration and Accessors
 + (NSString *)version; // returns the version of MGTwitterEngine

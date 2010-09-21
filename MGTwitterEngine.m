@@ -120,31 +120,53 @@
 
 - (MGTwitterEngine *)initWithDelegate:(NSObject *)newDelegate
 {
-    if ((self = [super init])) {
-        _delegate = newDelegate; // deliberately weak reference
-        _connections = [[NSMutableDictionary alloc] initWithCapacity:0];
-        _clientName = [DEFAULT_CLIENT_NAME retain];
-        _clientVersion = [DEFAULT_CLIENT_VERSION retain];
-        _clientURL = [DEFAULT_CLIENT_URL retain];
-		_clientSourceToken = [DEFAULT_CLIENT_TOKEN retain];
-		_APIDomain = [TWITTER_DOMAIN retain];
-		_searchDomain = [TWITTER_SEARCH_DOMAIN retain];
+	// TODO - should probably deprecate this form of initaliser when
+	//		  and force people to provide a parser; then we can remove
+	//		  all use of YAJL_AVAILABLE etc
+	
+	MGTwitterParserFactory* parser = nil;
+	
+	#if YAJL_AVAILABLE
+		parser = [[MGTwitterParserFactoryYAJL alloc] init];
+	#elif TOUCHJSON_AVAILABLE
+		parser = [[MGTwitterParserFactoryTouchJSON alloc] init];
+	#elif USE_LIBXML
+		parser = [[MGTwitterParserFactoryLibXML alloc] init];
+	#elif USE_NSXML
+		parser = [[MGTwitterParserFactoryXML alloc] init];
+	#endif
+	
+	return [self initWithDelegate: newDelegate parser: [parser autorelease]];
+}
 
-        _secureConnection = YES;
-		_clearsCookies = NO;
-		_deliveryOptions = MGTwitterEngineDeliveryAllResultsOption;
-		
-#if YAJL_AVAILABLE
-		_parser = [[MGTwitterParserFactoryYAJL alloc] init];
-#elif TOUCHJSON_AVAILABLE
-		_parser = [[MGTwitterParserFactoryTouchJSON alloc] init];
-#elif USE_LIBXML
-		_parser = [[MGTwitterParserFactoryLibXML alloc] init];
-#else
-		_parser = [[MGTwitterParserFactoryXML alloc] init];
-#endif
-		
-		_APIFormat = [_parser APIFormat];
+- (MGTwitterEngine *)initWithDelegate:(NSObject *)newDelegate parser:(MGTwitterParserFactory*) parser;
+{
+    if ((self = [super init])) {
+		if (parser)
+		{
+			_delegate = newDelegate; // deliberately weak reference
+			_connections = [[NSMutableDictionary alloc] initWithCapacity:0];
+			_clientName = [DEFAULT_CLIENT_NAME retain];
+			_clientVersion = [DEFAULT_CLIENT_VERSION retain];
+			_clientURL = [DEFAULT_CLIENT_URL retain];
+			_clientSourceToken = [DEFAULT_CLIENT_TOKEN retain];
+			_APIDomain = [TWITTER_DOMAIN retain];
+			_searchDomain = [TWITTER_SEARCH_DOMAIN retain];
+			
+			_secureConnection = YES;
+			_clearsCookies = NO;
+			_deliveryOptions = MGTwitterEngineDeliveryAllResultsOption;
+			
+			_parser = [parser retain];
+			_APIFormat = [_parser APIFormat];
+		}
+		else
+		{
+			[self release];
+			self = nil;
+			NSAssert(NO, @"You must provide a parser, or define one of YAJL_AVAILABLE, TOUCHJSON_AVAILABLE, USE_LIBXML or USE_NSXML to 1 in your prefix header");
+		}
+
     }
     
     return self;
