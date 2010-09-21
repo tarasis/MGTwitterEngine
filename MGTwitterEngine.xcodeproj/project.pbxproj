@@ -456,9 +456,8 @@
 				22483BC51248FB39000F2F14 /* OATokenManager.m */,
 				22483BC61248FB39000F2F14 /* OAuthConsumer.h */,
 			);
-			name = OAuthConsumer;
-			path = ../oauthconsumer;
-			sourceTree = SOURCE_ROOT;
+			path = OAuthConsumer;
+			sourceTree = "<group>";
 		};
 		22483BA01248FB39000F2F14 /* Categories */ = {
 			isa = PBXGroup;
@@ -491,9 +490,8 @@
 			children = (
 				22483CA81248FE5F000F2F14 /* Source */,
 			);
-			name = TouchJSON;
-			path = ../TouchJSON;
-			sourceTree = SOURCE_ROOT;
+			path = TouchJSON;
+			sourceTree = "<group>";
 		};
 		22483CA81248FE5F000F2F14 /* Source */ = {
 			isa = PBXGroup;
@@ -769,15 +767,11 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = MGTwitterEngine_Prefix.pch;
-				HEADER_SEARCH_PATHS = (
-					/usr/include/libxml2,
-					"\"$(SRCROOT)/yajl/build/yajl-1.0.7/include/yajl\"",
-				);
+				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/yajl/build/yajl-1.0.7/lib\"",
 					"\"$(SRCROOT)\"",
 				);
 				ONLY_ACTIVE_ARCH_PRE_XCODE_3_1 = "$(NATIVE_ARCH_ACTUAL)";
@@ -795,15 +789,11 @@
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = MGTwitterEngine_Prefix.pch;
-				HEADER_SEARCH_PATHS = (
-					/usr/include/libxml2,
-					"\"$(SRCROOT)/yajl/build/yajl-1.0.7/include/yajl\"",
-				);
+				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/yajl/build/yajl-1.0.7/lib\"",
 					"\"$(SRCROOT)\"",
 				);
 				PRODUCT_NAME = MGTwitterEngine;
