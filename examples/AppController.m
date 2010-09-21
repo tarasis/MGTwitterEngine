@@ -7,7 +7,6 @@
 //
 
 #import "AppController.h"
-#import "MGTwitterParserFactoryTouchJSON.h"
 
 @implementation AppController
 
@@ -26,9 +25,14 @@
         NSLog(@"You forgot to specify your username/password/key/secret in AppController.m, things might not work!");
 		NSLog(@"And if things are mysteriously working without the username/password, it's because NSURLConnection is using a session cookie from another connection.");
     }
-    
+
+	// Create a parser for the engine to use.
+	// In this example the parser class is set in our prefix file so that we can vary it for each target.
+	// In a real application you would just settle on one parser class depending on which XML or JSON
+	// parsing library you want to use.
+	MGTwitterParserFactory* parser = [[PARSER_CLASS alloc] init];
+
     // Create a TwitterEngine and set our login details.
-	MGTwitterParserFactory* parser = [[MGTwitterParserFactoryTouchJSON alloc] init];
     twitterEngine = [[MGTwitterEngine alloc] initWithDelegate:self parser: parser];
 	[parser release];
 	
