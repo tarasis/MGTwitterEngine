@@ -15,18 +15,18 @@
 	if (_status)
 	{
 		[_status setObject:value forKey:key];
-		MGTwitterLogParsing(@"user:   status: %@ = %@ (%@)", key, value, NSStringFromClass([value class]));
+		MGTWITTER_LOG_PARSING(@"user:   status: %@ = %@ (%@)", key, value, NSStringFromClass([value class]));
 	}
 	else if (_user)
 	{
 		[_user setObject:value forKey:key];
-		MGTwitterLogParsing(@"user:   user: %@ = %@ (%@)", key, value, NSStringFromClass([value class]));
+		MGTWITTER_LOG_PARSING(@"user:   user: %@ = %@ (%@)", key, value, NSStringFromClass([value class]));
 	}
 }
 
 - (void)startDictionaryWithKey:(NSString *)key
 {
-	MGTwitterLogParsing(@"user: dictionary start = %@", key);
+	MGTWITTER_LOG_PARSING(@"user: dictionary start = %@", key);
 
 	if (! _user)
 	{
@@ -60,17 +60,17 @@
 		_user = nil;
 	}
 	
-	MGTwitterLogParsing(@"user: dictionary end");
+	MGTWITTER_LOG_PARSING(@"user: dictionary end");
 }
 
 - (void)startArrayWithKey:(NSString *)key
 {
-	MGTwitterLogParsing(@"user: array start = %@", key);
+	MGTWITTER_LOG_PARSING(@"user: array start = %@", key);
 }
 
 - (void)endArray
 {
-	MGTwitterLogParsing(@"user: array end");
+	MGTWITTER_LOG_PARSING(@"user: array end");
 }
 
 - (void)dealloc

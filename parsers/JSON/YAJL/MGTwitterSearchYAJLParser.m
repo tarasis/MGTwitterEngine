@@ -23,7 +23,7 @@
 		NSMutableDictionary *lastDictionary = [_dictionaries lastObject];
 		[lastDictionary setObject:value forKey:key];
 		
-		MGTwitterLogParsing(@"search:   results: %@ = %@ (%@)", key, value, NSStringFromClass([value class]));
+		MGTWITTER_LOG_PARSING(@"search:   results: %@ = %@ (%@)", key, value, NSStringFromClass([value class]));
 	}
 	else
 	{
@@ -31,13 +31,13 @@
 		{
 			[_status setObject:value forKey:key];
 		}
-		MGTwitterLogParsing(@"search:   status: %@ = %@ (%@)", key, value, NSStringFromClass([value class]));
+		MGTWITTER_LOG_PARSING(@"search:   status: %@ = %@ (%@)", key, value, NSStringFromClass([value class]));
 	}
 }
 
 - (void)startDictionaryWithKey:(NSString *)key
 {
-	MGTwitterLogParsing(@"search: dictionary start = %@", key);
+	MGTWITTER_LOG_PARSING(@"search: dictionary start = %@", key);
 	if (insideArray)
 	{
 		if (!_dictionaries) 
@@ -112,18 +112,18 @@
 		}
 	}
 	
-	MGTwitterLogParsing(@"search: dictionary end");
+	MGTWITTER_LOG_PARSING(@"search: dictionary end");
 }
 
 - (void)startArrayWithKey:(NSString *)key
 {
-	MGTwitterLogParsing(@"search: array start = %@", key);
+	MGTWITTER_LOG_PARSING(@"search: array start = %@", key);
 	insideArray = YES;
 }
 
 - (void)endArray
 {
-	MGTwitterLogParsing(@"search: array end");
+	MGTWITTER_LOG_PARSING(@"search: array end");
 	insideArray = NO;
 }
 

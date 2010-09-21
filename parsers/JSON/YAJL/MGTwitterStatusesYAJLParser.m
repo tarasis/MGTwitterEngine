@@ -26,12 +26,12 @@
 		[lastDictionary setObject:value forKey:key];
 	}
 	
-	MGTwitterLogParsing(@"parsed item: %@ = %@ (%@)", key, value, NSStringFromClass([value class]));
+	MGTWITTER_LOG_PARSING(@"parsed item: %@ = %@ (%@)", key, value, NSStringFromClass([value class]));
 }
 
 - (void)startDictionaryWithKey:(NSString *)key
 {
-	MGTwitterLogParsing(@"status: dictionary start = %@", key);
+	MGTWITTER_LOG_PARSING(@"status: dictionary start = %@", key);
 	
 	if (!_dictionaries) 
 	{
@@ -82,7 +82,7 @@
 		[_dictionaries removeLastObject];
 		[_dictionaryKeys removeLastObject];
 	}
-	MGTwitterLogParsing(@"status: dictionary end");
+	MGTWITTER_LOG_PARSING(@"status: dictionary end");
 }
 
 - (void)startArrayWithKey:(NSString *)key
@@ -92,12 +92,12 @@
 	NSMutableArray *newArray = [NSMutableArray array];
 	[self addValue:newArray forKey:key];
 	
-	MGTwitterLogParsing(@"status: array start = %@", key);
+	MGTWITTER_LOG_PARSING(@"status: array start = %@", key);
 }
 
 - (void)endArray
 {
-	MGTwitterLogParsing(@"status: array end");
+	MGTWITTER_LOG_PARSING(@"status: array end");
 
 	arrayDepth--;
 	[self clearCurrentKey];

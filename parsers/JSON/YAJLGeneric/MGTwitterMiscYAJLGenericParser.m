@@ -16,13 +16,13 @@
 	if (_results)
 	{
 		[_results setObject:value forKey:key];
-		MGTwitterLogParsing(@"misc:   results: %@ = %@ (%@)", key, value, NSStringFromClass([value class]));
+		MGTWITTER_LOG_PARSING(@"misc:   results: %@ = %@ (%@)", key, value, NSStringFromClass([value class]));
 	}
 }
 
 - (void)startDictionaryWithKey:(NSString *)key
 {
-	MGTwitterLogParsing(@"misc: dictionary start = %@", key);
+	MGTWITTER_LOG_PARSING(@"misc: dictionary start = %@", key);
 
 	if (! _results)
 	{
@@ -43,17 +43,17 @@
 	[_results release];
 	_results = nil;
 	
-	MGTwitterLogParsing(@"misc: dictionary end");
+	MGTWITTER_LOG_PARSING(@"misc: dictionary end");
 }
 
 - (void)startArrayWithKey:(NSString *)key
 {
-	MGTwitterLogParsing(@"misc: array start = %@", key);
+	MGTWITTER_LOG_PARSING(@"misc: array start = %@", key);
 }
 
 - (void)endArray
 {
-	MGTwitterLogParsing(@"misc: array end");
+	MGTWITTER_LOG_PARSING(@"misc: array end");
 }
 
 - (void)dealloc

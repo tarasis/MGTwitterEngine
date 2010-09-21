@@ -270,7 +270,7 @@ static yajl_callbacks callbacks = {
 			if (status != yajl_status_insufficient_data && status != yajl_status_ok)
 			{
 				unsigned char *errorMessage = yajl_get_error(_handle, 0, [json bytes], [json length]);
-				MGTwitterLogParsing(@"MGTwitterYAJLParser: error = %s", errorMessage);
+				MGTWITTER_LOG_PARSING(@"MGTwitterYAJLParser: error = %s", errorMessage);
 				[self _parsingErrorOccurred:[NSError errorWithDomain:@"YAJL" code:status userInfo:[NSDictionary dictionaryWithObject:[NSString stringWithUTF8String:(char *)errorMessage] forKey:@"errorMessage"]]];
 				yajl_free_error(_handle, errorMessage);
 			}
@@ -324,12 +324,12 @@ static yajl_callbacks callbacks = {
 		[lastDictionary setObject:value forKey:key];
 	}
 	
-	MGTwitterLogParsing(@"parsed item: %@ = %@ (%@)", key, value, NSStringFromClass([value class]));
+	MGTWITTER_LOG_PARSING(@"parsed item: %@ = %@ (%@)", key, value, NSStringFromClass([value class]));
 }
 
 - (void)startDictionaryWithKey:(NSString *)key
 {
-	MGTwitterLogParsing(@"status: dictionary start = %@", key);
+	MGTWITTER_LOG_PARSING(@"status: dictionary start = %@", key);
 	
 	if (!_dictionaries) 
 	{
@@ -380,7 +380,7 @@ static yajl_callbacks callbacks = {
 		[_dictionaries removeLastObject];
 		[_dictionaryKeys removeLastObject];
 	}
-	MGTwitterLogParsing(@"status: dictionary end");
+	MGTWITTER_LOG_PARSING(@"status: dictionary end");
 }
 
 - (void)startArrayWithKey:(NSString *)key
@@ -390,12 +390,12 @@ static yajl_callbacks callbacks = {
 	NSMutableArray *newArray = [NSMutableArray array];
 	[self addValue:newArray forKey:key];
 	
-	MGTwitterLogParsing(@"status: array start = %@", key);
+	MGTWITTER_LOG_PARSING(@"status: array start = %@", key);
 }
 
 - (void)endArray
 {
-	MGTwitterLogParsing(@"status: array end");
+	MGTWITTER_LOG_PARSING(@"status: array end");
 	
 	arrayDepth--;
 	[self clearCurrentKey];

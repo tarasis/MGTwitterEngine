@@ -480,7 +480,7 @@
         
         if (finalBody) {
             [theRequest setHTTPBody:[finalBody dataUsingEncoding:NSUTF8StringEncoding]];
-			MGTwitterLog(@"MGTwitterEngine: finalBody = %@", finalBody);
+			MGTWITTER_LOG(@"MGTwitterEngine: finalBody = %@", finalBody);
         }
     }
 	
@@ -613,7 +613,7 @@
         return nil;
     }
     
-	MGTwitterLog(@"MGTwitterEngine: finalURL = %@", finalURL);
+	MGTWITTER_LOG(@"MGTwitterEngine: finalURL = %@", finalURL);
 
     // Construct an NSMutableURLRequest for the URL and set appropriate request method.
 	NSMutableURLRequest *theRequest = nil;
@@ -667,7 +667,7 @@
 
 	NSURL *URL = [connection URL];
 
-	MGTwitterLog(@"MGTwitterEngine: jsonData = %@ from %@", [[[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding] autorelease], URL);
+	MGTWITTER_LOG(@"MGTwitterEngine: jsonData = %@ from %@", [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease], URL);
 
 	if (responseType == MGTwitterOAuthToken)
 	{
@@ -697,7 +697,7 @@
                  withParsedObjects:(NSArray *)parsedObjects
 {
     // Forward appropriate message to _delegate, depending on responseType.
-	MGTwitterLog(@"parsingSucceededForRequest responseType: %d", responseType);
+	MGTWITTER_LOG(@"parsingSucceededForRequest responseType: %d", responseType);
     switch (responseType) {
         case MGTwitterStatuses:
         case MGTwitterStatus:
@@ -805,7 +805,7 @@
 			[_delegate connectionFinished:connectionIdentifier];
     }
     
-        MGTwitterLog(@"MGTwitterEngine: (%ld) [%@]:\r%@", 
+        MGTWITTER_LOG(@"MGTwitterEngine: (%ld) [%@]:\r%@", 
               (long)[resp statusCode], 
               [NSHTTPURLResponse localizedStringForStatusCode:[((NSHTTPURLResponse *)response) statusCode]], 
               [((NSHTTPURLResponse *)response) allHeaderFields]);
@@ -875,8 +875,7 @@
     NSData *receivedData = [connection data];
     if (receivedData) {
 		// Dump data as string for debugging.
-		MGTwitterLog(@"MGTwitterEngine: Succeeded! Received %lu bytes of data:\r\r%@", (unsigned long)[receivedData length], 
-						 [NSString stringWithUTF8String:[receivedData bytes]);
+		MGTWITTER_LOG(@"MGTwitterEngine: Succeeded! Received %lu bytes of data:\r\r%@", (unsigned long)[receivedData length], [NSString stringWithUTF8String:[receivedData bytes]]);
 #if DEBUG        
         if (NO) {
             // Dump XML to file for debugging.
@@ -1361,7 +1360,7 @@
 - (NSString *)createListForUser:(NSString *)username withName:(NSString *)listName withOptions:(NSDictionary *)options;
 {
 	if (!username || !listName) {
-		MGTwitterLog(@"returning nil");
+		MGTWITTER_LOG(@"returning nil");
 		return nil;
 	}
 	
@@ -1386,7 +1385,7 @@
 - (NSString *)updateListForUser:(NSString *)username withID:(MGTwitterEngineID)listID withOptions:(NSDictionary *)options
 {
 	if (!username || !listID) {
-		MGTwitterLog(@"returning nil");
+		MGTWITTER_LOG(@"returning nil");
 		return nil;
 	}
 	NSString *path = [NSString stringWithFormat:@"%@/lists/%llu.%@", username, listID, _APIFormat];
@@ -1413,7 +1412,7 @@
 - (NSString *)getListForUser:(NSString *)username withID:(MGTwitterEngineID)listID
 {
 	if (!username || !listID) {
-		MGTwitterLog(@"returning nil");
+		MGTWITTER_LOG(@"returning nil");
 		return nil;
 	}
 	NSString *path = [NSString stringWithFormat:@"%@/lists/%llu.%@", username, listID, _APIFormat];
@@ -1729,7 +1728,7 @@
 
 - (NSString *)getFriendIDsFor:(NSString *)username startingFromCursor:(MGTwitterEngineCursorID)cursor
 {
-	MGTwitterLog(@"getFriendIDsFor:%@ atCursor:%lld", username, cursor);
+	MGTWITTER_LOG(@"getFriendIDsFor:%@ atCursor:%lld", username, cursor);
 	
 	if (cursor == 0 || [username isEqualToString:@""])
 		return nil;
@@ -1751,7 +1750,7 @@
 
 - (NSString *)getFollowerIDsFor:(NSString *)username startingFromCursor:(MGTwitterEngineCursorID)cursor
 {
-	MGTwitterLog(@"getFollowerIDsFor:%@ atCursor:%lld", username, cursor);
+	MGTWITTER_LOG(@"getFollowerIDsFor:%@ atCursor:%lld", username, cursor);
 	
 	if (cursor == 0 || [username isEqualToString:@""])
 		return nil;

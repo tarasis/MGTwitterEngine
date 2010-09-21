@@ -15,23 +15,23 @@
 	if (_sender)
 	{
 		[_sender setObject:value forKey:key];
-		MGTwitterLogParsing(@"messages:   sender: %@ = %@ (%@)", key, value, NSStringFromClass([value class]));
+		MGTWITTER_LOG_PARSING(@"messages:   sender: %@ = %@ (%@)", key, value, NSStringFromClass([value class]));
 	}
 	else if (_recipient)
 	{
 		[_recipient setObject:value forKey:key];
-		MGTwitterLogParsing(@"messages:   recipient: %@ = %@ (%@)", key, value, NSStringFromClass([value class]));
+		MGTWITTER_LOG_PARSING(@"messages:   recipient: %@ = %@ (%@)", key, value, NSStringFromClass([value class]));
 	}
 	else if (_status)
 	{
 		[_status setObject:value forKey:key];
-		MGTwitterLogParsing(@"messages:   status: %@ = %@ (%@)", key, value, NSStringFromClass([value class]));
+		MGTWITTER_LOG_PARSING(@"messages:   status: %@ = %@ (%@)", key, value, NSStringFromClass([value class]));
 	}
 }
 
 - (void)startDictionaryWithKey:(NSString *)key
 {
-	MGTwitterLogParsing(@"messages: dictionary start = %@", key);
+	MGTWITTER_LOG_PARSING(@"messages: dictionary start = %@", key);
 
 	if (! _status)
 	{
@@ -75,17 +75,17 @@
 		_status = nil;
 	}
 	
-	MGTwitterLogParsing(@"messages: dictionary end");
+	MGTWITTER_LOG_PARSING(@"messages: dictionary end");
 }
 
 - (void)startArrayWithKey:(NSString *)key
 {
-	MGTwitterLogParsing(@"messages: array start = %@", key);
+	MGTWITTER_LOG_PARSING(@"messages: array start = %@", key);
 }
 
 - (void)endArray
 {
-	MGTwitterLogParsing(@"messages: array end");
+	MGTWITTER_LOG_PARSING(@"messages: array end");
 }
 
 - (void)dealloc

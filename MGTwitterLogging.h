@@ -6,23 +6,23 @@
 //
 
 // By default, logging will be enabled if DEBUG is set to 1, and disabled otherwise.
-// You can provide your own definition of MGTwitterLog to direct it elsewhere.
+// You can provide your own definition of MGTWITTER_LOG to direct it elsewhere.
 
-#ifndef MGTwitterLog
+#ifndef MGTWITTER_LOG
 #if DEBUG
-#define MGTwitterLog(...) NSLog(__VA_ARGS__)
+#define MGTWITTER_LOG(...) NSLog(__VA_ARGS__)
 #else
-#define MGTwitterLog(...)
+#define MGTWITTER_LOG(...)
 #endif
 #endif
 
 // By default, logging of the parsers will be enabled if DEBUG_PARSING is set to 1, and disabled otherwise.
-// You can provide your own definition of MGTwitterLogParsing to direct it elsewhere.
+// You can provide your own definition of MGTWITTER_LOG_PARSING to direct it elsewhere.
 
-#ifndef MGTwitterLogParsing
+#ifndef MGTWITTER_LOG_PARSING
 #if DEBUG_PARSING
-#define MGTwitterLogParsing MGTwitterLog
+#define MGTWITTER_LOG_PARSING MGTWITTER_LOG
 #else
-#define MGTwitterLogParsing(...)
+#define MGTWITTER_LOG_PARSING(...)
 #endif
 #endif
