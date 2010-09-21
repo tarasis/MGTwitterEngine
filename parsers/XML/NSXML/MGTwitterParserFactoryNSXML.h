@@ -5,7 +5,7 @@
 //  Copyright 2010 Elegant Chaos. All rights reserved.
 //
 
-#import "MGTwitterParserFactoryXML.h"
+#import "MGTwitterParserFactory.h"
 
 
 @interface MGTwitterParserFactoryNSXML : MGTwitterParserFactory
