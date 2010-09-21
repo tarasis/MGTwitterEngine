@@ -16,7 +16,7 @@
 
 @implementation MGTwitterParserFactoryLibXML
 
-- (void) parseData: (NSData*) data URL: (NSURL*) URL identifier: (NSString*) identifier requestType: (MGTwitterRequestType) requestType responseType: (MGTwitterResponseType) responseType deliveryOptions: (MGTwitterEngineDeliveryOptions) deliveryOptions engine: (MGTwitterEngine*) engine
+- (void) parseData: (NSData*) data URL: (NSURL*) URL identifier: (NSString*) identifier requestType: (MGTwitterRequestType) requestType responseType: (MGTwitterResponseType) responseType engine: (MGTwitterEngine*) engine
 {
 switch (responseType) {
 	case MGTwitterStatuses:

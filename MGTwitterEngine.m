@@ -155,7 +155,6 @@
 			
 			_secureConnection = YES;
 			_clearsCookies = NO;
-			_deliveryOptions = MGTwitterEngineDeliveryAllResultsOption;
 			
 			_parser = [parser retain];
 			_APIFormat = [_parser APIFormat];
@@ -316,16 +315,6 @@
 - (void)setClearsCookies:(BOOL)flag
 {
 	_clearsCookies = flag;
-}
-
-- (MGTwitterEngineDeliveryOptions)deliveryOptions
-{
-	return _deliveryOptions;
-}
-
-- (void)setDeliveryOptions:(MGTwitterEngineDeliveryOptions)deliveryOptions
-{
-	_deliveryOptions = deliveryOptions;
 }
 
 #pragma mark Connection methods
@@ -700,7 +689,7 @@
 	}
 	else
 	{
-		[_parser parseData: data URL:URL identifier:identifier requestType:requestType responseType:responseType deliveryOptions:_deliveryOptions engine:self];
+		[_parser parseData: data URL:URL identifier:identifier requestType:requestType responseType:responseType engine:self];
 	}
 
 }

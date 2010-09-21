@@ -29,7 +29,6 @@
 	NSString *_APIFormat;
     BOOL _secureConnection;
 	BOOL _clearsCookies;
-	MGTwitterEngineDeliveryOptions _deliveryOptions;
 	
 	// OAuth
 	NSString *_consumerKey;
@@ -63,8 +62,6 @@
 - (void)setUsesSecureConnection:(BOOL)flag;
 - (BOOL)clearsCookies; // YES = deletes twitter.com cookies when setting username/password, default is NO (see README.txt)
 - (void)setClearsCookies:(BOOL)flag;
-- (MGTwitterEngineDeliveryOptions)deliveryOptions;
-- (void)setDeliveryOptions:(MGTwitterEngineDeliveryOptions)deliveryOptions;
 - (MGTwitterParserFactory*) parser;
 - (void) setParser: (MGTwitterParserFactory*) parser;
 

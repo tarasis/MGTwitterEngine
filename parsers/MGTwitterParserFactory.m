@@ -20,7 +20,6 @@
 		identifier: (NSString*) identifier 
 	   requestType: (MGTwitterRequestType) requestType 
 	  responseType: (MGTwitterResponseType) responseType 
-   deliveryOptions: (MGTwitterEngineDeliveryOptions) deliveryOptions 
 			engine: (MGTwitterEngine*) engine
 {
 	NSAssert(NO, @"Parser subclasses should implement this method.");

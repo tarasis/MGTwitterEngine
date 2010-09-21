@@ -8,7 +8,6 @@
 #import <Foundation/Foundation.h>
 
 #import "MGTwitterRequestTypes.h"
-#import "MGTwitterEngineDelegate.h"
 
 @class MGTwitterEngine;
 
@@ -24,7 +23,6 @@
 			identifier: (NSString*) identifier 
 			requestType: (MGTwitterRequestType) requestType 
 			responseType: (MGTwitterResponseType) responseType 
-			deliveryOptions: (MGTwitterEngineDeliveryOptions) deliveryOptions 
 			engine: (MGTwitterEngine*) engine;
 
 @end

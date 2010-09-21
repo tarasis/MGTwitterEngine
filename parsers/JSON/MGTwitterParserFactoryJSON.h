@@ -6,13 +6,16 @@
 //
 
 #import "MGTwitterParserFactory.h"
+#import "MGTwitterEngineDelegate.h"
 
 
 @interface MGTwitterParserFactoryJSON : MGTwitterParserFactory 
 {
-	
+	MGTwitterEngineDeliveryOptions _deliveryOptions;	
 }
 
 - (NSString*) APIFormat;
+- (MGTwitterEngineDeliveryOptions)deliveryOptions;
+- (void)setDeliveryOptions:(MGTwitterEngineDeliveryOptions)deliveryOptions;
 
 @end

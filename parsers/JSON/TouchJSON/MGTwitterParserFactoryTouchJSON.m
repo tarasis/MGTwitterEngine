@@ -12,11 +12,11 @@
 
 @implementation MGTwitterParserFactoryTouchJSON
 
-- (void) parseData: (NSData*) data URL: (NSURL*) URL identifier: (NSString*) identifier requestType: (MGTwitterRequestType) requestType responseType: (MGTwitterResponseType) responseType deliveryOptions: (MGTwitterEngineDeliveryOptions) deliveryOptions engine: (MGTwitterEngine*) engine
+- (void) parseData: (NSData*) data URL: (NSURL*) URL identifier: (NSString*) identifier requestType: (MGTwitterRequestType) requestType responseType: (MGTwitterResponseType) responseType engine: (MGTwitterEngine*) engine
 {
 	[MGTwitterTouchJSONParser parserWithJSON:data delegate:engine
 								connectionIdentifier:identifier requestType:requestType
-										responseType:responseType URL:URL deliveryOptions:deliveryOptions];
+										responseType:responseType URL:URL deliveryOptions:_deliveryOptions];
 }
 
 @end

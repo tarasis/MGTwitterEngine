@@ -14,7 +14,7 @@
 
 @implementation MGTwitterParserFactoryYAJLGeneric
 
-- (void) parseData: (NSData*) data URL: (NSURL*) URL identifier: (NSString*) identifier requestType: (MGTwitterRequestType) requestType responseType: (MGTwitterResponseType) responseType deliveryOptions: (MGTwitterEngineDeliveryOptions) deliveryOptions engine: (MGTwitterEngine*) engine
+- (void) parseData: (NSData*) data URL: (NSURL*) URL identifier: (NSString*) identifier requestType: (MGTwitterRequestType) requestType responseType: (MGTwitterResponseType) responseType engine: (MGTwitterEngine*) engine
 {
     switch (responseType) {
 		case MGTwitterStatuses:
@@ -26,17 +26,17 @@
 		case MGTwitterSocialGraph:
             [MGTwitterYAJLGenericParser parserWithJSON:data delegate:engine 
 						   connectionIdentifier:identifier requestType:requestType 
-								   responseType:responseType URL:URL deliveryOptions:deliveryOptions];
+								   responseType:responseType URL:URL deliveryOptions:_deliveryOptions];
             break;
 		case MGTwitterMiscellaneous:
 			[MGTwitterMiscYAJLGenericParser parserWithJSON:data delegate:engine 
 							   connectionIdentifier:identifier requestType:requestType 
-									   responseType:responseType URL:URL deliveryOptions:deliveryOptions];
+									   responseType:responseType URL:URL deliveryOptions:_deliveryOptions];
 			break;
 		case MGTwitterSearchResults:
  			[MGTwitterSearchYAJLGenericParser parserWithJSON:data delegate:engine 
 								 connectionIdentifier:identifier requestType:requestType 
-										 responseType:responseType URL:URL deliveryOptions:deliveryOptions];
+										 responseType:responseType URL:URL deliveryOptions:_deliveryOptions];
 			break;
 		default:
             break;
