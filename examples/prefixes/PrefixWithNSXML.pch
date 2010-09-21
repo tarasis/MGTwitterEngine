@@ -3,5 +3,11 @@
 //
 
 #ifdef __OBJC__
+
 #import "MGTwitterEngineGlobalHeader.h"
+
+#import "MGTwitterParserFactoryNSXML.h"
+
+#define PARSER_CLASS MGTwitterParserFactoryNSXML
+
 #endif
