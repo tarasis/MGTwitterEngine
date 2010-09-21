@@ -8,7 +8,7 @@
 #import "MGTwitterParserFactoryXML.h"
 
 
-@interface MGTwitterParserFactoryNSXML : MGTwitterParserFactoryXML
+@interface MGTwitterParserFactoryNSXML : MGTwitterParserFactory
 {
 	
 }

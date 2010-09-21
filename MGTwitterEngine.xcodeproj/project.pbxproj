@@ -32,7 +32,6 @@
 		22483C2C1248FC9A000F2F14 /* MGTwitterUserListsParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 22483A4C1248EDF5000F2F14 /* MGTwitterUserListsParser.m */; };
 		22483C2E1248FC9B000F2F14 /* MGTwitterUsersParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 22483A501248EDF5000F2F14 /* MGTwitterUsersParser.m */; };
 		22483C2F1248FC9C000F2F14 /* MGTwitterXMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 22483A521248EDF5000F2F14 /* MGTwitterXMLParser.m */; };
-		22483C321248FCB8000F2F14 /* MGTwitterParserFactoryXML.m in Sources */ = {isa = PBXBuildFile; fileRef = 22483A3F1248EDF5000F2F14 /* MGTwitterParserFactoryXML.m */; };
 		22483C3D1248FD24000F2F14 /* MGTwitterMessagesParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 22483A421248EDF5000F2F14 /* MGTwitterMessagesParser.m */; };
 		22483D341248FE5F000F2F14 /* CDataScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 22483CAA1248FE5F000F2F14 /* CDataScanner.m */; };
 		22483D3A1248FE5F000F2F14 /* CJSONDataSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 22483CB91248FE5F000F2F14 /* CJSONDataSerializer.m */; };
@@ -90,15 +89,6 @@
 		22483E5512490CE2000F2F14 /* OARequestParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = 22483BBD1248FB39000F2F14 /* OARequestParameter.m */; };
 		22483E5612490CE2000F2F14 /* OAServiceTicket.m in Sources */ = {isa = PBXBuildFile; fileRef = 22483BBF1248FB39000F2F14 /* OAServiceTicket.m */; };
 		22483E5712490CE2000F2F14 /* OAToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 22483BC31248FB39000F2F14 /* OAToken.m */; };
-		22483E5912490CE2000F2F14 /* MGTwitterMiscParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 22483A441248EDF5000F2F14 /* MGTwitterMiscParser.m */; };
-		22483E5A12490CE2000F2F14 /* MGTwitterParserFactoryNSXML.m in Sources */ = {isa = PBXBuildFile; fileRef = 22483A461248EDF5000F2F14 /* MGTwitterParserFactoryNSXML.m */; };
-		22483E5B12490CE2000F2F14 /* MGTwitterSocialGraphParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 22483A481248EDF5000F2F14 /* MGTwitterSocialGraphParser.m */; };
-		22483E5C12490CE2000F2F14 /* MGTwitterStatusesParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 22483A4A1248EDF5000F2F14 /* MGTwitterStatusesParser.m */; };
-		22483E5D12490CE2000F2F14 /* MGTwitterUserListsParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 22483A4C1248EDF5000F2F14 /* MGTwitterUserListsParser.m */; };
-		22483E5E12490CE2000F2F14 /* MGTwitterUsersParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 22483A501248EDF5000F2F14 /* MGTwitterUsersParser.m */; };
-		22483E5F12490CE2000F2F14 /* MGTwitterXMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 22483A521248EDF5000F2F14 /* MGTwitterXMLParser.m */; };
-		22483E6012490CE2000F2F14 /* MGTwitterParserFactoryXML.m in Sources */ = {isa = PBXBuildFile; fileRef = 22483A3F1248EDF5000F2F14 /* MGTwitterParserFactoryXML.m */; };
-		22483E6112490CE2000F2F14 /* MGTwitterMessagesParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 22483A421248EDF5000F2F14 /* MGTwitterMessagesParser.m */; };
 		22483E6212490CE2000F2F14 /* CDataScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 22483CAA1248FE5F000F2F14 /* CDataScanner.m */; };
 		22483E6312490CE2000F2F14 /* CJSONDataSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 22483CB91248FE5F000F2F14 /* CJSONDataSerializer.m */; };
 		22483E6412490CE2000F2F14 /* CJSONDeserializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 22483CBB1248FE5F000F2F14 /* CJSONDeserializer.m */; };
@@ -285,8 +275,6 @@
 		22483A3B1248EDF5000F2F14 /* MGTwitterSocialGraphLibXMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGTwitterSocialGraphLibXMLParser.m; sourceTree = "<group>"; };
 		22483A3C1248EDF5000F2F14 /* MGTwitterStatusesLibXMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGTwitterStatusesLibXMLParser.h; sourceTree = "<group>"; };
 		22483A3D1248EDF5000F2F14 /* MGTwitterStatusesLibXMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGTwitterStatusesLibXMLParser.m; sourceTree = "<group>"; };
-		22483A3E1248EDF5000F2F14 /* MGTwitterParserFactoryXML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGTwitterParserFactoryXML.h; sourceTree = "<group>"; };
-		22483A3F1248EDF5000F2F14 /* MGTwitterParserFactoryXML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGTwitterParserFactoryXML.m; sourceTree = "<group>"; };
 		22483A411248EDF5000F2F14 /* MGTwitterMessagesParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGTwitterMessagesParser.h; sourceTree = "<group>"; };
 		22483A421248EDF5000F2F14 /* MGTwitterMessagesParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGTwitterMessagesParser.m; sourceTree = "<group>"; };
 		22483A431248EDF5000F2F14 /* MGTwitterMiscParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGTwitterMiscParser.h; sourceTree = "<group>"; };
@@ -592,8 +580,6 @@
 			isa = PBXGroup;
 			children = (
 				22483A311248EDF5000F2F14 /* LibXML */,
-				22483A3E1248EDF5000F2F14 /* MGTwitterParserFactoryXML.h */,
-				22483A3F1248EDF5000F2F14 /* MGTwitterParserFactoryXML.m */,
 				22483A401248EDF5000F2F14 /* NSXML */,
 			);
 			path = XML;
@@ -1094,15 +1080,6 @@
 				22483E5512490CE2000F2F14 /* OARequestParameter.m in Sources */,
 				22483E5612490CE2000F2F14 /* OAServiceTicket.m in Sources */,
 				22483E5712490CE2000F2F14 /* OAToken.m in Sources */,
-				22483E5912490CE2000F2F14 /* MGTwitterMiscParser.m in Sources */,
-				22483E5A12490CE2000F2F14 /* MGTwitterParserFactoryNSXML.m in Sources */,
-				22483E5B12490CE2000F2F14 /* MGTwitterSocialGraphParser.m in Sources */,
-				22483E5C12490CE2000F2F14 /* MGTwitterStatusesParser.m in Sources */,
-				22483E5D12490CE2000F2F14 /* MGTwitterUserListsParser.m in Sources */,
-				22483E5E12490CE2000F2F14 /* MGTwitterUsersParser.m in Sources */,
-				22483E5F12490CE2000F2F14 /* MGTwitterXMLParser.m in Sources */,
-				22483E6012490CE2000F2F14 /* MGTwitterParserFactoryXML.m in Sources */,
-				22483E6112490CE2000F2F14 /* MGTwitterMessagesParser.m in Sources */,
 				22483E6212490CE2000F2F14 /* CDataScanner.m in Sources */,
 				22483E6312490CE2000F2F14 /* CJSONDataSerializer.m in Sources */,
 				22483E6412490CE2000F2F14 /* CJSONDeserializer.m in Sources */,
@@ -1238,7 +1215,6 @@
 				22483C2C1248FC9A000F2F14 /* MGTwitterUserListsParser.m in Sources */,
 				22483C2E1248FC9B000F2F14 /* MGTwitterUsersParser.m in Sources */,
 				22483C2F1248FC9C000F2F14 /* MGTwitterXMLParser.m in Sources */,
-				22483C321248FCB8000F2F14 /* MGTwitterParserFactoryXML.m in Sources */,
 				22483C3D1248FD24000F2F14 /* MGTwitterMessagesParser.m in Sources */,
 				22483D341248FE5F000F2F14 /* CDataScanner.m in Sources */,
 				22483D3A1248FE5F000F2F14 /* CJSONDataSerializer.m in Sources */,
