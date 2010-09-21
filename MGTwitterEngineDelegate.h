@@ -48,6 +48,7 @@ typedef enum _MGTwitterEngineDeliveryOptions {
 #endif
 - (void)socialGraphInfoReceived:(NSArray *)socialGraphInfo forRequest:(NSString *)connectionIdentifier;
 - (void)accessTokenReceived:(OAToken *)token forRequest:(NSString *)connectionIdentifier;
+- (void)geoSearchResultsReceived:(NSArray*)searchResults forRequest:(NSString *)connectionIdentifier;
 
 #if TARGET_OS_IPHONE
 - (void)imageReceived:(UIImage *)image forRequest:(NSString *)connectionIdentifier;

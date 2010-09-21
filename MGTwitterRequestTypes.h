@@ -52,6 +52,7 @@ typedef enum _MGTwitterRequestType {
 #if YAJL_AVAILABLE || TOUCHJSON_AVAILABLE
 	MGTwitterSearchRequest, // performing a search
 	MGTwitterSearchCurrentTrendsRequest, // getting the current trends
+	MGTwitterGeoSearchRequest,
 #endif
 	MGTwitterOAuthTokenRequest,
 } MGTwitterRequestType;
@@ -72,6 +73,7 @@ typedef enum _MGTwitterResponseType {
 	MGTwitterSocialGraph		= 10,
 	MGTwitterOAuthToken         = 11,
 	MGTwitterUserLists          = 12,
+	MGTwitterGeoSearchResults	= 13,
 } MGTwitterResponseType;
 
 // This key is added to each tweet or direct message returned,

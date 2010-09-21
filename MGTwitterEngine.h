@@ -13,24 +13,23 @@
 
 #import "OAToken.h"
 
+@class MGTwitterEngineParserFactory;
 
 @interface MGTwitterEngine : NSObject <MGTwitterParserDelegate>
 {
     __weak NSObject <MGTwitterEngineDelegate> *_delegate;
     NSMutableDictionary *_connections;   // MGTwitterHTTPURLConnection objects
+	MGTwitterEngineParserFactory *_parser;
     NSString *_clientName;
     NSString *_clientVersion;
     NSString *_clientURL;
     NSString *_clientSourceToken;
 	NSString *_APIDomain;
-#if YAJL_AVAILABLE || TOUCHJSON_AVAILABLE
 	NSString *_searchDomain;
-#endif
+	NSString *_APIFormat;
     BOOL _secureConnection;
 	BOOL _clearsCookies;
-#if YAJL_AVAILABLE || TOUCHJSON_AVAILABLE
 	MGTwitterEngineDeliveryOptions _deliveryOptions;
-#endif
 	
 	// OAuth
 	NSString *_consumerKey;
@@ -57,18 +56,14 @@
 - (void)setClientName:(NSString *)name version:(NSString *)version URL:(NSString *)url token:(NSString *)token;
 - (NSString *)APIDomain;
 - (void)setAPIDomain:(NSString *)domain;
-#if YAJL_AVAILABLE || TOUCHJSON_AVAILABLE
 - (NSString *)searchDomain;
 - (void)setSearchDomain:(NSString *)domain;
-#endif
 - (BOOL)usesSecureConnection; // YES = uses HTTPS, default is YES
 - (void)setUsesSecureConnection:(BOOL)flag;
 - (BOOL)clearsCookies; // YES = deletes twitter.com cookies when setting username/password, default is NO (see README.txt)
 - (void)setClearsCookies:(BOOL)flag;
-#if YAJL_AVAILABLE || TOUCHJSON_AVAILABLE
 - (MGTwitterEngineDeliveryOptions)deliveryOptions;
 - (void)setDeliveryOptions:(MGTwitterEngineDeliveryOptions)deliveryOptions;
-#endif
 
 // Connection methods
 - (NSUInteger)numberOfConnections;
@@ -82,6 +77,10 @@
 // As with the Twitter API methods below, it returns a unique connection identifier.
 // Retrieved images are sent to the delegate via the -imageReceived:forRequest: method.
 - (NSString *)getImageAtURL:(NSString *)urlString;
+
+- (void)parsingSucceededForRequest:(NSString *)identifier 
+                    ofResponseType:(MGTwitterResponseType)responseType 
+                 withParsedObjects:(NSArray *)parsedObjects;
 
 #pragma mark REST API methods
 
@@ -271,4 +270,6 @@
 
 @end
 
-
+@interface MGTwitterEngine (Geo)
+- (NSString *) getGeoSearchAt: (CLLocation*) location;
+@end

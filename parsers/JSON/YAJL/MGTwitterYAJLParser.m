@@ -197,7 +197,7 @@ static yajl_callbacks sMGTwitterYAJLParserCallbacks = {
 	responseType:(MGTwitterResponseType)respType URL:(NSURL *)theURL
 	deliveryOptions:(MGTwitterEngineDeliveryOptions)theDeliveryOptions
 {
-	if (self = [super init])
+	if ((self = [super init]) != nil)
 	{
 		json = [theJSON retain];
 		identifier = [theIdentifier retain];
